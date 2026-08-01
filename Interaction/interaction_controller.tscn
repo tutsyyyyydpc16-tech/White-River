@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bmuctybiuymyl"]
+
+[ext_resource type="Script" uid="uid://be4wtlep3ve20" path="res://Interaction/interaction_controller.gd" id="1_ralfq"]
+
+[node name="InteractionController" type="Node" unique_id=2013384041]
+script = ExtResource("1_ralfq")

@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://bheuxp1j7e4qx"]
+
+[ext_resource type="PackedScene" uid="uid://1d6jsyixx68o" path="res://forSceneStreet/scenes/cenarua_v_6.tscn" id="1_s5uuh"]
+[ext_resource type="Environment" uid="uid://8itn0myg4ona" path="res://env/cena_rua.tres" id="3_f1yyt"]
+[ext_resource type="PackedScene" uid="uid://f367fm4gm1k0" path="res://forSceneStreet/player/player_street.tscn" id="4_f1yyt"]
+[ext_resource type="AudioStream" uid="uid://dt34pb85252yw" path="res://Sounds/Sound of Cena Rua.mp3" id="4_hrukw"]
+[ext_resource type="Script" uid="uid://yowdlfma6gtm" path="res://cutscene/scripts/cutscene_hospital.gd" id="5_f1yyt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vkxl1"]
+size = Vector3(2.4458008, 1, 1.9794922)
+
+[sub_resource type="Animation" id="Animation_27qdu"]
+resource_name = "Cutscene_hospital"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.04, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-127.816605, 45.31559, -218.8518), Vector3(-132.19394, 45.31559, -214.44041), Vector3(-141.02509, 45.31559, -214.44041)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.04, 2.99, 3.99, 5.01),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.023544494, 2.629513, 0), Vector3(0.023544496, 1.782784, 1.0084826e-10), Vector3(0.023544496, 3.0040607, 6.195595e-10), Vector3(0.023544502, -0.24005249, 6.1955946e-10), Vector3(0.023544509, 1.5843925, 6.290203e-10)]
+}
+
+[sub_resource type="Animation" id="Animation_l521b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-127.816605, 45.31559, -218.8518)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.023544494, 2.629513, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3jymq"]
+_data = {
+&"Cutscene_hospital": SubResource("Animation_27qdu"),
+&"RESET": SubResource("Animation_l521b")
+}
+
+[node name="Cena Rua" type="Node3D" unique_id=201684182]
+
+[node name="cenaruaV6" parent="." unique_id=2036708676 instance=ExtResource("1_s5uuh")]
+transform = Transform3D(7, 0, 0, 0, -7, 1.0569706e-06, 0, -1.0569706e-06, -7, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1318442457]
+environment = ExtResource("3_f1yyt")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=200868534]
+stream = ExtResource("4_hrukw")
+autoplay = true
+
+[node name="PlayerRua" parent="." unique_id=186006650 instance=ExtResource("4_f1yyt")]
+transform = Transform3D(0.12024617, 0, 1.4951725, 0, 1.5, 0, -1.4951725, 0, 0.12024617, -117.25615, 43.991745, -200.08409)
+
+[node name="Cutscene Hospital" type="Node3D" parent="." unique_id=1894100739]
+
+[node name="Area3D" type="Area3D" parent="Cutscene Hospital" unique_id=2086632935]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -195.45615, 0, -186.60127)
+script = ExtResource("5_f1yyt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cutscene Hospital/Area3D" unique_id=1337405608]
+transform = Transform3D(5.9256167, 0, 8.055251, 0, 10, 0, -8.055251, 0, 5.9256167, 56.246704, 45.175636, -25.1474)
+shape = SubResource("BoxShape3D_vkxl1")
+
+[node name="Camera3D" type="Camera3D" parent="Cutscene Hospital" unique_id=1856557262]
+transform = Transform3D(-0.8717274, 0.011535529, 0.48985538, 0, 0.99972284, -0.023542318, -0.4899912, -0.020522485, -0.87148577, -127.816605, 45.31559, -218.8518)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cutscene Hospital" unique_id=1220128490]
+libraries/ = SubResource("AnimationLibrary_3jymq")
+
+[connection signal="body_entered" from="Cutscene Hospital/Area3D" to="Cutscene Hospital/Area3D" method="_on_body_entered"]
+[connection signal="animation_finished" from="Cutscene Hospital/AnimationPlayer" to="Cutscene Hospital/Area3D" method="_on_animation_player_animation_finished"]

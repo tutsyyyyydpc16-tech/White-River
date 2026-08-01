@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cn25vn8hoy736"]
+
+[ext_resource type="Script" uid="uid://bouarmbsmc11v" path="res://codes/inimigo.gd" id="1_030df"]
+[ext_resource type="Material" uid="uid://dpm57ml74qrnd" path="res://colors/Vermelho.tres" id="2_0b8xr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0b8xr"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g45jm"]
+
+[node name="Inimigo" type="CharacterBody3D" unique_id=54037648]
+script = ExtResource("1_030df")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1439489587]
+shape = SubResource("CapsuleShape3D_0b8xr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1796245919]
+mesh = SubResource("CapsuleMesh_g45jm")
+surface_material_override/0 = ExtResource("2_0b8xr")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=141551056]
+
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=1846421428]
+transform = Transform3D(5, 0, 0, 0, -2.1855695e-07, 5, 0, -5, -2.1855695e-07, 0, 0.41277117, 0)

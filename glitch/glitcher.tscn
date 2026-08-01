@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bhnwlxnbpo0qv"]
+
+[ext_resource type="PackedScene" uid="uid://cb001afdb2rhm" path="res://glitch/cop.scn" id="1_blu6p"]
+[ext_resource type="PackedScene" uid="uid://cat2wk4tv0lcl" path="res://glitch/glitch.tscn" id="2_s4254"]
+
+[node name="Node3D" type="Node3D" unique_id=2126979876]
+
+[node name="Cop" parent="." unique_id=1409699862 instance=ExtResource("1_blu6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.726416, 0, -2.8726835)
+
+[node name="Glitch" parent="." unique_id=127948724 instance=ExtResource("2_s4254")]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0.6294626, 2.6157374, -2.4167264)

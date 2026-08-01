@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://pv1t3ixmdtsj"]
+
+[ext_resource type="PackedScene" uid="uid://dj7138w5bh54x" path="res://forSceneContention/objects/porta_banheiro.tscn" id="1_6eygi"]
+
+[node name="Porta_banheiro" type="Node3D" unique_id=405558630]
+
+[node name="Porta_banheiro" parent="." unique_id=198884622 instance=ExtResource("1_6eygi")]

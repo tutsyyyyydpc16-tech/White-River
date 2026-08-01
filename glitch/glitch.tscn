@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://cat2wk4tv0lcl"]
+
+[ext_resource type="Gradient" uid="uid://b734gqeq3f7x3" path="res://stillImportant/new_gradient.tres" id="1_fb7cq"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_duxql"]
+gradient = ExtResource("1_fb7cq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r4k1u"]
+particle_flag_rotate_y = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = -2.2351742e-05
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
+color = Color(0, 0.026999846, 0.54, 0.5921569)
+color_ramp = SubResource("GradientTexture1D_duxql")
+collision_use_scale = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_103r4"]
+albedo_color = Color(0, 1.3528494, 0.086426, 0.39215687)
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_deim1"]
+material = SubResource("StandardMaterial3D_103r4")
+size = Vector3(0.1, 0.05, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ds8k0"]
+particle_flag_rotate_y = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rn768"]
+albedo_color = Color(0, 0.026999846, 0.54, 0.5921569)
+emission_enabled = true
+emission = Color(0, 0, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dcixj"]
+material = SubResource("StandardMaterial3D_rn768")
+size = Vector3(0.1, 0.05, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dohhb"]
+lifetime_randomness = 0.5
+particle_flag_rotate_y = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_egv8n"]
+albedo_color = Color(1.3528494, 0, 0.033309728, 0.39215687)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bc8ha"]
+material = SubResource("StandardMaterial3D_egv8n")
+size = Vector3(0.1, 0.05, 0)
+
+[node name="Glitch" type="Node3D" unique_id=127948724]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1371710372]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.114516854, 0)
+amount = 5
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_r4k1u")
+draw_passes = 2
+draw_pass_1 = SubResource("BoxMesh_deim1")
+draw_pass_2 = null
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="." unique_id=1380890586]
+amount = 5
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_ds8k0")
+draw_pass_1 = SubResource("BoxMesh_dcixj")
+
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="." unique_id=875956638]
+amount = 5
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_dohhb")
+draw_pass_1 = SubResource("BoxMesh_bc8ha")

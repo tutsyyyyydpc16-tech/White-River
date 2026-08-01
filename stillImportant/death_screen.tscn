@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://c26ni5cht6qm8"]
+
+[ext_resource type="Script" uid="uid://btxwtbjfsvr7u" path="res://stillImportant/death_screen.gd" id="1_ki3ox"]
+
+[node name="DeathScreen" type="Control" unique_id=1960325718]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ki3ox")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1045544838]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1158923507]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=834425514]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 11.0
+offset_bottom = -119.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 66
+text = "YOU DIED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Return" type="Button" parent="CanvasLayer" unique_id=951737765]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -304.0
+offset_right = 117.0
+offset_bottom = -239.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 27
+text = "Return"
+
+[node name="Exit" type="Button" parent="CanvasLayer" unique_id=1251775377]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -228.0
+offset_right = 117.0
+offset_bottom = -163.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 27
+text = "Exit"
+
+[connection signal="pressed" from="CanvasLayer/Return" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_exit_pressed"]

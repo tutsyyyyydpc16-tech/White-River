@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dmlmhcpa2sxbn"]
+
+[ext_resource type="Script" uid="uid://cg0h8ehpws8ob" path="res://Interaction/RotatableInteraction/SwitchInteraction/switch_interaction.gd" id="1_cdsw7"]
+
+[node name="SwitchInteraction" type="Node" unique_id=1086397220]
+script = ExtResource("1_cdsw7")

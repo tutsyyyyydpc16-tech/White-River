@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c5i2ikl6dbx2i"]
+
+[ext_resource type="Script" uid="uid://dynim36av7vfw" path="res://Interaction/GrabbableInteraction/grabbable_interaction.gd" id="1_57ahe"]
+
+[node name="GrabbableInteraction" type="Node" unique_id=1868080213]
+script = ExtResource("1_57ahe")

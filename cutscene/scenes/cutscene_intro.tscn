@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://10g7330isdc7"]
+
+[ext_resource type="Script" uid="uid://cn0opxrfxa3cr" path="res://cutscene/scripts/cutscene_intro.gd" id="1_p4fu8"]
+[ext_resource type="VideoStream" uid="uid://cb573qmngsrns" path="res://cutscene/cutscene (2).ogv" id="2_hl0hq"]
+
+[node name="CutsceneIntro" type="Node" unique_id=774296851]
+script = ExtResource("1_p4fu8")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=1820964153]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -323.0
+offset_right = 1338.0
+offset_bottom = 757.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.6, 0.6)
+stream = ExtResource("2_hl0hq")
+autoplay = true

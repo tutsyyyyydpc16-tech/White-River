@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c2il1gn6kad4r"]
+
+[ext_resource type="Script" uid="uid://wbut10np25bi" path="res://Interaction/CollectableInteraction/EquippableImteraction/equippable_interaction.gd" id="1_leol4"]
+
+[node name="EquippableInteraction" type="Node" unique_id=1044079378]
+script = ExtResource("1_leol4")

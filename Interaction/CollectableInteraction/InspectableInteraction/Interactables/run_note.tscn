@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bpkwcop001e0e"]
+
+[ext_resource type="Texture2D" uid="uid://bu6sygfeow282" path="res://image/dumb_paper_texture.png" id="1_v85wu"]
+[ext_resource type="PackedScene" uid="uid://b643wshsk38qw" path="res://Interaction/CollectableInteraction/InspectableInteraction/inspectable_interaction.tscn" id="2_v3ytv"]
+[ext_resource type="Script" uid="uid://bmuhy8m8g37oh" path="res://Inventory/item_data.gd" id="3_es0t8"]
+[ext_resource type="AudioStream" uid="uid://bvyqofse1cmtg" path="res://Sounds/drawKnife2.ogg" id="3_tbn0m"]
+[ext_resource type="Script" uid="uid://du3vhe6yswtnb" path="res://Inventory/Actions/inspectable_action.gd" id="4_tbn0m"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2npwl"]
+size = Vector2(1.4, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jpafx"]
+albedo_color = Color(0.69135684, 0.6913568, 0.69135684, 1)
+albedo_texture = ExtResource("1_v85wu")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v45hw"]
+size = Vector3(1.6, 0.3, 2.14)
+
+[sub_resource type="Resource" id="Resource_6ldx5"]
+script = ExtResource("4_tbn0m")
+metadata/_custom_type_script = "uid://du3vhe6yswtnb"
+
+[sub_resource type="Resource" id="Resource_mfr2i"]
+script = ExtResource("3_es0t8")
+item_name = "note1"
+item_icon = ExtResource("1_v85wu")
+action_data = SubResource("Resource_6ldx5")
+metadata/_custom_type_script = "uid://bmuhy8m8g37oh"
+
+[node name="RunNote" type="StaticBody3D" unique_id=974171279]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=538940001]
+mesh = SubResource("PlaneMesh_2npwl")
+surface_material_override/0 = SubResource("StandardMaterial3D_jpafx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1425460342]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.003326416, 0, 0.02205801)
+shape = SubResource("BoxShape3D_v45hw")
+
+[node name="InspectableInteraction" parent="." unique_id=190712381 instance=ExtResource("2_v3ytv")]
+content = "DUMB 
+DUMB 
+DUMB
+DUMB 
+DUMB 
+DUMB"
+collect_sound_effect = ExtResource("3_tbn0m")
+item_data = SubResource("Resource_mfr2i")

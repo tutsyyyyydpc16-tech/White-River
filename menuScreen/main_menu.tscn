@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://cmgoxn3bo6p64"]
+
+[ext_resource type="Script" uid="uid://b7r8mpien3xbm" path="res://menuScreen/main_menu.gd" id="1_5vetp"]
+[ext_resource type="Texture2D" uid="uid://d3nuorwh2dehm" path="res://menuScreen/backgroundMenu.png" id="2_ygiax"]
+[ext_resource type="FontFile" uid="uid://gnmv43aql0ky" path="res://fonts/x12y16pxMaruMonica.ttf" id="3_6k6ys"]
+[ext_resource type="Shader" uid="uid://bd1prebrabyrx" path="res://shader/glitch.gdshader" id="4_48gui"]
+[ext_resource type="AudioStream" uid="uid://cf3x478nxt7ut" path="res://Sounds/main_menu.mp3" id="4_hl3gu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7l6vc"]
+shader = ExtResource("4_48gui")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_rate = 0.2
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
+
+[node name="MainMenu" type="Node" unique_id=1076208421]
+script = ExtResource("1_5vetp")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=907595091]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=38625548]
+offset_left = -20.0
+offset_top = -4.0
+offset_right = 1797.0
+offset_bottom = 638.0
+texture = ExtResource("2_ygiax")
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer" unique_id=1331577984]
+anchors_preset = -1
+anchor_left = 0.50100005
+anchor_top = 0.5
+anchor_right = 0.50100005
+anchor_bottom = 0.5
+offset_left = -543.15204
+offset_top = -121.0
+offset_right = -374.15204
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer" unique_id=636494616]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer" unique_id=1834338938]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6k6ys")
+theme_override_font_sizes/font_size = 70
+text = "Play"
+flat = true
+
+[node name="Exit" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer" unique_id=858656704]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6k6ys")
+theme_override_font_sizes/font_size = 70
+text = "Exit"
+flat = true
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=575455196]
+clip_contents = true
+offset_left = 61.000008
+offset_top = 52.000046
+offset_right = 129.0
+offset_bottom = 68.000046
+scale = Vector2(5, 5)
+theme_override_fonts/font = ExtResource("3_6k6ys")
+text = "Whiter River"
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1058638387]
+visible = false
+material = SubResource("ShaderMaterial_7l6vc")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=209955032]
+stream = ExtResource("4_hl3gu")
+autoplay = true
+
+[connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://c0jg4e7yhcvy0"]
+
+[ext_resource type="Script" uid="uid://d011x8m2q74ob" path="res://forSceneHospital/scripts/hospital.gd" id="1_iqqox"]
+[ext_resource type="PackedScene" uid="uid://da0y7whyekkm7" path="res://forSceneHospital/scenes/hospital_v_2.tscn" id="1_t6ltd"]
+[ext_resource type="PackedScene" uid="uid://b3v4ueokt8lkt" path="res://forSceneHospital/player/player_hospital.tscn" id="2_2pl55"]
+[ext_resource type="Script" uid="uid://bjdfq51e51l40" path="res://forSceneHospital/scripts/cutscene.gd" id="4_f1r52"]
+[ext_resource type="Environment" uid="uid://b4fmiwih1n74c" path="res://env/ambiente_claro.tres" id="4_kv8ya"]
+[ext_resource type="PackedScene" uid="uid://bbxs275i2dac4" path="res://enemies/inimigo (3).tscn" id="6_kv8ya"]
+[ext_resource type="PackedScene" uid="uid://deerf5ub17rd" path="res://stillImportant/destination.tscn" id="7_gwq82"]
+
+[sub_resource type="Animation" id="Animation_iqqox"]
+resource_name = "dialogo"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kv8ya"]
+_data = {
+&"dialogo": SubResource("Animation_iqqox")
+}
+
+[node name="Hospital" type="Node3D" unique_id=1797215387]
+script = ExtResource("1_iqqox")
+
+[node name="hospitalV2" parent="." unique_id=1465656294 instance=ExtResource("1_t6ltd")]
+
+[node name="player_hospital" parent="." unique_id=799849910 instance=ExtResource("2_2pl55")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2675228, -104.8824)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2110121918]
+environment = ExtResource("4_kv8ya")
+
+[node name="Cutscene" type="Node3D" parent="." unique_id=2119788816]
+transform = Transform3D(0.097339705, 0, -0.9952513, 0, 1, 0, 0.9952513, 0, 0.097339705, -19.931116, 2.1096637, -91.45703)
+visible = false
+script = ExtResource("4_f1r52")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cutscene" unique_id=690270170]
+libraries/ = SubResource("AnimationLibrary_kv8ya")
+
+[node name="Camera3D" type="Camera3D" parent="Cutscene" unique_id=1508787222]
+transform = Transform3D(0.1, 0, 1.8626451e-09, 0, 0.099999994, 0, -1.8626451e-09, 0, 0.1, -0.0015649796, 0.013703793, 0.01600337)
+
+[node name="Inimigo" parent="." unique_id=54037648 node_paths=PackedStringArray("patrol_destinations") instance=ExtResource("6_kv8ya")]
+process_mode = 4
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -45.37062, 1.302907, -5.7031507)
+visible = false
+patrol_destinations = [NodePath("../Destinos/destination"), NodePath("../Destinos/destination2"), NodePath("../Destinos/destination3"), NodePath("../Destinos/destination4"), NodePath("../Destinos/destination5"), NodePath("../Destinos/destination6"), NodePath("../Destinos/destination7"), NodePath("../Destinos/destination8"), NodePath("../Destinos/destination9")]
+
+[node name="Destinos" type="Node3D" parent="." unique_id=1475685301]
+
+[node name="destination" parent="Destinos" unique_id=801991121 instance=ExtResource("7_gwq82")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.793896, 1.302907, -6.0457115)
+
+[node name="destination2" parent="Destinos" unique_id=944301473 instance=ExtResource("7_gwq82")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.253853, 1.302907, -6.0457115)
+
+[node name="destination3" parent="Destinos" unique_id=1483313995 instance=ExtResource("7_gwq82")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.822987, 1.302907, -6.0457115)
+
+[node name="destination4" parent="Destinos" unique_id=553737619 instance=ExtResource("7_gwq82")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.192319, 1.302907, -6.0457115)
+
+[node name="destination5" parent="Destinos" unique_id=1966983669 instance=ExtResource("7_gwq82")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.417643, 1.302907, -6.0457115)
+
+[node name="destination6" parent="Destinos" unique_id=599726370 instance=ExtResource("7_gwq82")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.192319, 1.302907, -39.94939)
+
+[node name="destination7" parent="Destinos" unique_id=1401596448 instance=ExtResource("7_gwq82")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.214016, 1.302907, -38.39745)
+
+[node name="destination8" parent="Destinos" unique_id=824236109 instance=ExtResource("7_gwq82")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5793636, 1.302907, -49.206337)
+
+[node name="destination9" parent="Destinos" unique_id=1103946624 instance=ExtResource("7_gwq82")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5793636, 1.302907, -72.80727)

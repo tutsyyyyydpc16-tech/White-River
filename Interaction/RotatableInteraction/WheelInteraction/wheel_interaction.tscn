@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ckejwjup5v4bw"]
+
+[ext_resource type="Script" uid="uid://5xc766whyqiy" path="res://Interaction/RotatableInteraction/WheelInteraction/wheel_interaction.gd" id="1_wu473"]
+
+[node name="WheelInteraction" type="Node" unique_id=586359954]
+script = ExtResource("1_wu473")

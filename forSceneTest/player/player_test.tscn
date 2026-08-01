@@ -1,0 +1,149 @@
+[gd_scene format=3 uid="uid://6ft1qa1llpfb"]
+
+[ext_resource type="Script" uid="uid://cmr8b8sjjfc0m" path="res://codes/player.gd" id="1_eo456"]
+[ext_resource type="Script" uid="uid://casoaq08fm0j8" path="res://trash/fp_cam.gd" id="2_qs8si"]
+[ext_resource type="PackedScene" uid="uid://xpa0xql5lb3o" path="res://forSceneContention/objects/flashlight.tscn" id="3_nqoya"]
+[ext_resource type="PackedScene" uid="uid://bk8g5pxnlqy2t" path="res://stillImportant/braco.glb" id="4_3wdvh"]
+[ext_resource type="Script" uid="uid://buykglbrvy270" path="res://stillImportant/ray_cast_3d_contention.gd" id="5_j1bmn"]
+[ext_resource type="Script" uid="uid://nauf3qqkqw30" path="res://forSceneContention/scripts/player_contention_ui.gd" id="6_25len"]
+[ext_resource type="Shader" uid="uid://r7p2cq0hsj5i" path="res://shader/pixel.gdshader" id="7_lgrp2"]
+[ext_resource type="Texture2D" uid="uid://b6w6wbtsa412s" path="res://stillImportant/point.png" id="8_ofa2r"]
+[ext_resource type="PackedScene" uid="uid://cxdesysowmxcw" path="res://stillImportant/task_ui.tscn" id="9_xuugf"]
+[ext_resource type="PackedScene" uid="uid://dr72kruha25gn" path="res://stillImportant/pause_menu.tscn" id="10_fk0n4"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_kqu6x"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oul6g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ebec5"]
+shader = ExtResource("7_lgrp2")
+shader_parameter/pixel_size = 4.0
+
+[node name="PlayerCont" type="CharacterBody3D" unique_id=186006650 groups=["player"]]
+script = ExtResource("1_eo456")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1782332095]
+cast_shadow = 0
+mesh = SubResource("CapsuleMesh_kqu6x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2100513706]
+shape = SubResource("CapsuleShape3D_oul6g")
+
+[node name="Head" type="Node3D" parent="." unique_id=1979953244]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9062251, -0.21841156)
+script = ExtResource("2_qs8si")
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=10921627]
+current = true
+
+[node name="SpotLight3D" parent="Head/Camera3D" unique_id=781583958 instance=ExtResource("3_nqoya")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.5276067, 0.056901217, -0.49720788)
+
+[node name="braco" parent="Head/Camera3D/SpotLight3D" unique_id=20820378 instance=ExtResource("4_3wdvh")]
+transform = Transform3D(1.1621321, 0.37869447, 0.26180008, 0.46037894, -0.9559363, -0.6608608, -7.4505806e-08, 0.7108278, -1.0282139, -0.771533, -0.7559265, -0.031883717)
+
+[node name="RayCast3D_contention" type="RayCast3D" parent="Head" unique_id=1816249779]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.21634626)
+target_position = Vector3(0, -3, 0)
+collide_with_areas = true
+script = ExtResource("5_j1bmn")
+
+[node name="player_contention_ui" type="Control" parent="." unique_id=408273298]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_25len")
+
+[node name="Pixel" type="CanvasLayer" parent="player_contention_ui" unique_id=1016208548]
+layer = 0
+
+[node name="ColorRect" type="ColorRect" parent="player_contention_ui/Pixel" unique_id=1057059855]
+material = SubResource("ShaderMaterial_ebec5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="player_contention_ui" unique_id=1056919269]
+
+[node name="CenterContainer" type="CenterContainer" parent="player_contention_ui/CanvasLayer" unique_id=1539863801]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1150.0
+offset_bottom = 642.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+
+[node name="crosshair" type="TextureRect" parent="player_contention_ui/CanvasLayer/CenterContainer" unique_id=675275875]
+layout_mode = 2
+texture = ExtResource("8_ofa2r")
+
+[node name="Mensage" type="Control" parent="player_contention_ui/CanvasLayer" unique_id=705976537]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="player_contention_ui/CanvasLayer/Mensage" unique_id=1589447357]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -69.0
+offset_right = 1163.0
+offset_bottom = 570.0
+theme_override_font_sizes/font_size = 23
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="DialoguePanel2" type="Control" parent="player_contention_ui/CanvasLayer" unique_id=191607919]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label2" type="Label" parent="player_contention_ui/CanvasLayer/DialoguePanel2" unique_id=1792134162]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -69.0
+offset_right = 1163.0
+offset_bottom = 570.0
+theme_override_font_sizes/font_size = 23
+text = "What the hell?"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="task_ui" parent="player_contention_ui" unique_id=1227124689 instance=ExtResource("9_xuugf")]
+layer = 2
+
+[node name="pause_menu" parent="player_contention_ui" unique_id=738029466 instance=ExtResource("10_fk0n4")]
+layer = 3
+visible = false
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="player_contention_ui" unique_id=1423423074]
+
+[node name="ColorRect" type="ColorRect" parent="player_contention_ui/CanvasLayer2" unique_id=8862083]
+visible = false
+offset_right = 1151.0
+offset_bottom = 649.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="player_contention_ui/CanvasLayer2" unique_id=2023875460]
+visible = false
+offset_right = 1152.0
+offset_bottom = 647.0
+theme_override_font_sizes/font_size = 47
+text = "What Happened?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="player_contention_ui/pause_menu/MainButtons/resume" to="player_contention_ui" method="resume_game"]
+[connection signal="pressed" from="player_contention_ui/pause_menu/MainButtons/quit_game" to="player_contention_ui" method="quit_game"]
+
+[editable path="player_contention_ui/pause_menu"]

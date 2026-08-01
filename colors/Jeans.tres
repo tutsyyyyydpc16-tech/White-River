@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://lps86dq5nuxx"]
+
+[sub_resource type="Gradient" id="Gradient_0t50f"]
+colors = PackedColorArray(0, 0, 0.35686275, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_w1rgn"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tdh0t"]
+noise = SubResource("FastNoiseLite_w1rgn")
+color_ramp = SubResource("Gradient_0t50f")
+
+[resource]
+cull_mode = 2
+albedo_texture = SubResource("NoiseTexture2D_tdh0t")

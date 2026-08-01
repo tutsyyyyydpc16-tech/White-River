@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://i3yepyhjadfd"]
+
+[ext_resource type="Texture2D" uid="uid://cjvpqoawj3k82" path="res://kenney_prototype-textures/PNG/Green/texture_01.png" id="1_levs4"]
+[ext_resource type="PackedScene" uid="uid://c5i2ikl6dbx2i" path="res://Interaction/GrabbableInteraction/grabbable_interaction.tscn" id="2_8y4bo"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_x21aj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gd6ch"]
+albedo_texture = ExtResource("1_levs4")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cyliq"]
+
+[node name="Cube_1kg" type="RigidBody3D" unique_id=136171198]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1618829432]
+mesh = SubResource("BoxMesh_x21aj")
+surface_material_override/0 = SubResource("StandardMaterial3D_gd6ch")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=498826545]
+shape = SubResource("BoxShape3D_cyliq")
+
+[node name="GrabbableInteraction" parent="." unique_id=1868080213 instance=ExtResource("2_8y4bo")]

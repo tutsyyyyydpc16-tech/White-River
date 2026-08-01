@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cxdesysowmxcw"]
+
+[ext_resource type="Script" uid="uid://0rh8bqd55rft" path="res://stillImportant/task_ui.gd" id="1_afctj"]
+
+[node name="task_ui" type="CanvasLayer" unique_id=1227124689 groups=["ui"]]
+script = ExtResource("1_afctj")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=580022140]
+offset_left = 1079.0
+offset_right = 1365.0
+offset_bottom = 118.0
+theme_override_font_sizes/normal_font_size = 25
+text = "Task:"
+
+[node name="task_text" type="RichTextLabel" parent="." unique_id=829243305]
+offset_left = 754.0
+offset_top = 35.0
+offset_right = 1154.0
+offset_bottom = 153.0
+theme_override_font_sizes/normal_font_size = 22
+text = "Get a Flashlight"
+text_direction = 2
+
+[node name="FPSLabel" type="Label" parent="." unique_id=298143475]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "FPS:"

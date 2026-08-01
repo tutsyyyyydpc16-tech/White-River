@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://ddrxxjlapil4"]
+
+[ext_resource type="PackedScene" uid="uid://6c0pq7autd5v" path="res://Interaction/CollectableInteraction/ConsumableInteraction/consumable_interaction.tscn" id="1_3fscq"]
+[ext_resource type="Script" uid="uid://coj1wya5od65t" path="res://Inventory/Actions/consumable_action.gd" id="2_0gr87"]
+[ext_resource type="Script" uid="uid://bmuhy8m8g37oh" path="res://Inventory/item_data.gd" id="2_g2k07"]
+[ext_resource type="AudioStream" uid="uid://xul8ig20f1kh" path="res://Sounds/handleCoins2.ogg" id="2_mqbcq"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_uxoyi"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xcira"]
+albedo_color = Color(0.2673042, 0.26730424, 0.2673042, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_sfefg"]
+height = 0.3
+radius = 0.1
+
+[sub_resource type="Resource" id="Resource_mqbcq"]
+script = ExtResource("2_0gr87")
+metadata/_custom_type_script = "uid://coj1wya5od65t"
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mqbcq"]
+
+[sub_resource type="Resource" id="Resource_0gr87"]
+script = ExtResource("2_g2k07")
+item_name = "Lata"
+item_icon = SubResource("PlaceholderTexture2D_mqbcq")
+action_data = SubResource("Resource_mqbcq")
+metadata/_custom_type_script = "uid://bmuhy8m8g37oh"
+
+[node name="Item" type="RigidBody3D" unique_id=834470882]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=285228016]
+mesh = SubResource("CylinderMesh_uxoyi")
+surface_material_override/0 = SubResource("StandardMaterial3D_xcira")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=192776462]
+shape = SubResource("CylinderShape3D_sfefg")
+
+[node name="ConsumableInteraction" parent="." unique_id=607928505 instance=ExtResource("1_3fscq")]
+collect_sound_effect = ExtResource("2_mqbcq")
+item_data = SubResource("Resource_0gr87")

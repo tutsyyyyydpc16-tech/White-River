@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://deerf5ub17rd"]
+
+[ext_resource type="Script" uid="uid://cbyp41slsrqfc" path="res://codes/destination.gd" id="1_7ox8n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4iwdw"]
+
+[node name="destination" type="Node3D" unique_id=801991121]
+script = ExtResource("1_7ox8n")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=2051097616]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=810509291]
+shape = SubResource("BoxShape3D_4iwdw")
+
+[connection signal="body_entered" from="Area3D" to="." method="enter_trigger"]

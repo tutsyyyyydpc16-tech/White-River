@@ -1,0 +1,317 @@
+[gd_scene format=3 uid="uid://b3v4ueokt8lkt"]
+
+[ext_resource type="Script" uid="uid://d1ietfyq73edc" path="res://forSceneHospital/scripts/player_hospital.gd" id="1_vqofm"]
+[ext_resource type="Script" uid="uid://casoaq08fm0j8" path="res://trash/fp_cam.gd" id="2_hja10"]
+[ext_resource type="PackedScene" uid="uid://dh338jo7b7rub" path="res://forSceneHospital/objects/walkie_talkie.tscn" id="3_vq67v"]
+[ext_resource type="PackedScene" uid="uid://xpa0xql5lb3o" path="res://forSceneContention/objects/flashlight.tscn" id="4_nluc3"]
+[ext_resource type="PackedScene" uid="uid://bk8g5pxnlqy2t" path="res://stillImportant/braco.glb" id="5_wkjbu"]
+[ext_resource type="Script" uid="uid://b37jqmwkfqope" path="res://codes/player_interact.gd" id="6_dm167"]
+[ext_resource type="Script" uid="uid://nauf3qqkqw30" path="res://forSceneContention/scripts/player_contention_ui.gd" id="7_cd56m"]
+[ext_resource type="Shader" uid="uid://r7p2cq0hsj5i" path="res://shader/pixel.gdshader" id="8_ul1r5"]
+[ext_resource type="Texture2D" uid="uid://b6w6wbtsa412s" path="res://stillImportant/point.png" id="9_ukxay"]
+[ext_resource type="Script" uid="uid://p3tofk110idm" path="res://stillImportant/inventory.gd" id="10_pt6yi"]
+[ext_resource type="Texture2D" uid="uid://egyjxbdbwck7" path="res://trash/background.png" id="11_olkpl"]
+[ext_resource type="Texture2D" uid="uid://dutp2eoigkjsm" path="res://forSceneHospital/images/hospitalMap.png" id="12_hja10"]
+[ext_resource type="Script" uid="uid://j6uofuqo1s5n" path="res://stillImportant/paper_ui.gd" id="12_rub11"]
+[ext_resource type="Texture2D" uid="uid://8rgo0lbkx107" path="res://trash/oldPaper.png" id="13_gbpnc"]
+[ext_resource type="FontFile" uid="uid://cn1ujhnngdflj" path="res://fonts/VanillaCreamOx-Regular.otf" id="14_m3rh4"]
+[ext_resource type="PackedScene" uid="uid://cxdesysowmxcw" path="res://stillImportant/task_ui.tscn" id="15_2qi1v"]
+[ext_resource type="PackedScene" uid="uid://dr72kruha25gn" path="res://stillImportant/pause_menu.tscn" id="16_r6y48"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_kqu6x"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oul6g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ebec5"]
+shader = ExtResource("8_ul1r5")
+shader_parameter/pixel_size = 4.0
+
+[node name="PlayerHospital" type="CharacterBody3D" unique_id=186006650 groups=["player"]]
+script = ExtResource("1_vqofm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1782332095]
+cast_shadow = 0
+mesh = SubResource("CapsuleMesh_kqu6x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2100513706]
+shape = SubResource("CapsuleShape3D_oul6g")
+
+[node name="Head" type="Node3D" parent="." unique_id=1979953244]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9062251, -0.21841156)
+script = ExtResource("2_hja10")
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=10921627]
+
+[node name="Walkie_Talkie" parent="Head/Camera3D" unique_id=476473677 instance=ExtResource("3_vq67v")]
+transform = Transform3D(-8.742279e-09, 4.145605e-16, -0.2, 0.049206972, 0.1938522, -2.1509052e-09, 0.1938522, -0.049206972, -8.47355e-09, 0.5788138, -0.2291764, -0.49645174)
+visible = false
+
+[node name="Flashlight" parent="Head/Camera3D" unique_id=781583958 instance=ExtResource("4_nluc3")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.5276067, 0.056901217, -0.49720788)
+
+[node name="braco" parent="Head/Camera3D/Flashlight" unique_id=1417951411 instance=ExtResource("5_wkjbu")]
+transform = Transform3D(1.1621321, 0.37869447, 0.26180008, 0.46037894, -0.9559363, -0.6608608, -7.4505806e-08, 0.7108278, -1.0282139, -0.771533, -0.7559265, -0.031883717)
+
+[node name="RayCast3D_contention" type="RayCast3D" parent="Head" unique_id=1816249779]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.21634626)
+target_position = Vector3(0, -3, 0)
+collide_with_areas = true
+script = ExtResource("6_dm167")
+
+[node name="PlayerHospitalUI" type="Control" parent="." unique_id=408273298]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_cd56m")
+
+[node name="Pixel" type="CanvasLayer" parent="PlayerHospitalUI" unique_id=1016208548]
+layer = 0
+
+[node name="ColorRect" type="ColorRect" parent="PlayerHospitalUI/Pixel" unique_id=1057059855]
+material = SubResource("ShaderMaterial_ebec5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="PlayerHospitalUI" unique_id=1056919269]
+
+[node name="Hint" type="TextureRect" parent="PlayerHospitalUI/CanvasLayer" unique_id=509917169]
+visible = false
+offset_right = 1152.0
+offset_bottom = 647.0
+texture = ExtResource("12_hja10")
+
+[node name="Mensage" type="Control" parent="PlayerHospitalUI/CanvasLayer" unique_id=1705162053]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 575.5
+offset_top = 322.5
+offset_right = 575.5
+offset_bottom = 322.5
+
+[node name="Label" type="Label" parent="PlayerHospitalUI/CanvasLayer/Mensage" unique_id=158159401]
+layout_mode = 0
+offset_left = -286.5
+offset_top = 161.5
+offset_right = 248.0
+offset_bottom = 359.5
+text = "Press TAB to open the inventory"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="PlayerHospitalUI/CanvasLayer" unique_id=1539863801]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1150.0
+offset_bottom = 642.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+
+[node name="crosshair" type="TextureRect" parent="PlayerHospitalUI/CanvasLayer/CenterContainer" unique_id=675275875]
+layout_mode = 2
+texture = ExtResource("9_ukxay")
+
+[node name="Inventory" type="Control" parent="PlayerHospitalUI/CanvasLayer" unique_id=113399208]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_pt6yi")
+
+[node name="TextureRect" type="TextureRect" parent="PlayerHospitalUI/CanvasLayer/Inventory" unique_id=1766166252]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_olkpl")
+
+[node name="Mapa" type="TextureRect" parent="PlayerHospitalUI/CanvasLayer/Inventory" unique_id=751241579]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -296.0
+offset_top = -285.5
+offset_right = 296.0
+offset_bottom = 285.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_hja10")
+stretch_mode = 6
+
+[node name="paper1" type="Control" parent="PlayerHospitalUI/CanvasLayer/Inventory" unique_id=696994975 groups=["paper_ui"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_rub11")
+
+[node name="Label" type="Label" parent="PlayerHospitalUI/CanvasLayer/Inventory/paper1" unique_id=1781611968]
+layout_mode = 0
+offset_left = 393.00003
+offset_top = 42.000004
+offset_right = 856.0337
+offset_bottom = 648.0
+rotation = -0.017453292
+theme_override_colors/font_color = Color(0.05799634, 0.057996355, 0.05799631, 1)
+theme_override_fonts/font = ExtResource("14_m3rh4")
+theme_override_font_sizes/font_size = 25
+text = "CONFIDENTIAL
+
+Subject-01 Markus A. (Active)
+ID: 2010-032
+
+Subject-02 Danel K. (Not Found)
+ID: 2010-56
+
+Subject-03 Vitor M. (Not Found)
+ID: 2010-34
+
+Subject-04 Elena V. (Not Found)
+ID: 2010-98
+
+Subjetc-05 Rebeca S. (Missing)
+ID: 2010-12
+
+Subject-06 Isabelly R. (Found)
+ID: 2010-66
+
+"
+
+[node name="DialoguePanel" type="Control" parent="PlayerHospitalUI/CanvasLayer/Inventory" unique_id=26569762]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PlayerHospitalUI/CanvasLayer/Inventory/DialoguePanel" unique_id=538121375]
+layout_mode = 0
+offset_left = 396.99997
+offset_top = 55.999996
+offset_right = 876.0
+offset_bottom = 662.0
+rotation = -0.017453292
+scale = Vector2(0.77, 0.77)
+theme_override_colors/font_color = Color(0.05799634, 0.057996355, 0.05799631, 1)
+theme_override_fonts/font = ExtResource("14_m3rh4")
+theme_override_font_sizes/font_size = 25
+text = "We successfully transferred Subject-06
+to one of the  containment cells.
+It's strange how a mother can report her
+own daughter.
+Subject-06 spent some time in a psychiatric
+hospital, and all her information was there:
+address, name, family records, everything.
+Finding her was easier than expected.
+She will be an excellent subject for further
+observation and experimentation.
+
+We still have no sign of the others.
+Except for Subject-01.
+He remains active somewhere in the city.
+According to the reports, he was the one
+who started all of this. Patient Zero.
+Containment has failed.
+The city is gone.
+And what remains of it?
+Only memories of what was once a city.
+
+May God have mercy on us."
+
+[node name="paper_dumb" type="Control" parent="PlayerHospitalUI/CanvasLayer/Inventory" unique_id=457511228 groups=["paper_ui"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_rub11")
+
+[node name="paper_ui2" type="TextureRect" parent="PlayerHospitalUI/CanvasLayer/Inventory/paper_dumb" unique_id=1302819119]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.5
+offset_top = -285.5
+offset_right = 188.5
+offset_bottom = 285.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_gbpnc")
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="PlayerHospitalUI/CanvasLayer/Inventory/paper_dumb" unique_id=1608927331]
+layout_mode = 0
+offset_left = 396.99997
+offset_top = 55.999996
+offset_right = 876.0
+offset_bottom = 662.0
+rotation = -0.017453292
+scale = Vector2(0.77, 0.77)
+theme_override_colors/font_color = Color(0.05799634, 0.057996355, 0.05799631, 1)
+theme_override_fonts/font = ExtResource("14_m3rh4")
+theme_override_font_sizes/font_size = 52
+text = "EVERYONE IS DUMB DUMB
+DUMB DUMB DUMB DUMB
+DUMB DUMB DUMB DUMB
+DUMB DUMB DUMB DUMB
+DUMB DUMB DUMB DUMB
+DUMB DUMB DUMB DUMB
+DUMB DUMB DUMB DUMB
+DUMB DUMB DUMB DUMB
+DUMB DUMB DUMB DUMB
+DUMB DUMB DUMB DUMB
+DUMB DUMB DUMB DUMB
+DUMB DUMB DUMB DUMB"
+
+[node name="task_ui" parent="PlayerHospitalUI" unique_id=1227124689 instance=ExtResource("15_2qi1v")]
+layer = 2
+
+[node name="pause_menu" parent="PlayerHospitalUI" unique_id=738029466 instance=ExtResource("16_r6y48")]
+layer = 3
+visible = false
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="PlayerHospitalUI" unique_id=1423423074]
+
+[node name="ColorRect" type="ColorRect" parent="PlayerHospitalUI/CanvasLayer2" unique_id=8862083]
+visible = false
+offset_right = 1151.0
+offset_bottom = 649.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="PlayerHospitalUI/CanvasLayer2" unique_id=2023875460]
+visible = false
+offset_right = 1152.0
+offset_bottom = 647.0
+theme_override_font_sizes/font_size = 47
+text = "What Happened?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="PlayerHospitalUI/pause_menu/MainButtons/resume" to="PlayerHospitalUI" method="resume_game"]
+[connection signal="pressed" from="PlayerHospitalUI/pause_menu/MainButtons/quit_game" to="PlayerHospitalUI" method="quit_game"]
+
+[editable path="PlayerHospitalUI/pause_menu"]

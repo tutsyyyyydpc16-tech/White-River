@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://b4bs5oofa6y1h"]
+
+[ext_resource type="Script" uid="uid://cc4phwr1cclfm" path="res://codes/end.gd" id="1_lu7nx"]
+
+[node name="END" type="Control" unique_id=1029753376]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lu7nx")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1603199817]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="." unique_id=2093660610]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_font_sizes/font_size = 46
+text = "To be continued..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="." unique_id=740351155]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 493.0
+theme_override_font_sizes/font_size = 28
+text = "End of White River DEMO"
+horizontal_alignment = 1
+vertical_alignment = 2

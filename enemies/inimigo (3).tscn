@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bbxs275i2dac4"]
+
+[ext_resource type="Script" uid="uid://bouarmbsmc11v" path="res://codes/inimigo.gd" id="1_1vr66"]
+[ext_resource type="Material" uid="uid://dpm57ml74qrnd" path="res://colors/Vermelho.tres" id="2_8p8dk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0b8xr"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g45jm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1vr66"]
+
+[node name="Inimigo" type="CharacterBody3D" unique_id=54037648]
+script = ExtResource("1_1vr66")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1439489587]
+shape = SubResource("CapsuleShape3D_0b8xr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1796245919]
+mesh = SubResource("CapsuleMesh_g45jm")
+surface_material_override/0 = ExtResource("2_8p8dk")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=141551056]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1620362160]
+transform = Transform3D(1, 0, 0, 0, 0.33293194, 0, 0, 0, 1, 0, 0.4282621, -0.642429)
+mesh = SubResource("BoxMesh_1vr66")
+surface_material_override/0 = ExtResource("2_8p8dk")
+
+[node name="ChaseCast" type="RayCast3D" parent="." unique_id=1652972806]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.18153948, -0.46822557)
+target_position = Vector3(0, -10, 0)
+
+[node name="ChaseCast2" type="RayCast3D" parent="." unique_id=1363772545]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.18153948, -0.46822557)
+target_position = Vector3(5, -10, 0)
+
+[node name="ChaseCast3" type="RayCast3D" parent="." unique_id=329304315]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.18153948, -0.46822557)
+target_position = Vector3(-5, -10, 0)
+
+[node name="ChaseCast4" type="RayCast3D" parent="." unique_id=815644766]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.18153948, -0.46822557)
+target_position = Vector3(-2.5, -10, 0)
+
+[node name="ChaseCast5" type="RayCast3D" parent="." unique_id=487741484]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.18153948, -0.46822557)
+target_position = Vector3(2.5, -10, 0)
+
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="compute_velocity"]

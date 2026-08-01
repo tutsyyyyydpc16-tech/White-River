@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bw6jm5a7w3l8u"]
+
+[ext_resource type="Texture2D" uid="uid://gsaeuj73xfd4" path="res://Textura Cont/Porta_Textura.png" id="1_38vyp"]
+
+[resource]
+albedo_color = Color(0.55455405, 0.554554, 0.5545539, 1)
+albedo_texture = ExtResource("1_38vyp")
+uv1_scale = Vector3(8, 8, 8)

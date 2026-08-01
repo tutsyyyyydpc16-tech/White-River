@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dnoakywnmsv0x"]
+
+[ext_resource type="PackedScene" uid="uid://edq3cb8b1d3n" path="res://models/objects/PosteLuz.glb" id="1_4opd2"]
+[ext_resource type="Texture2D" uid="uid://dolhnmrcwkf2x" path="res://Textura Rua/Predio_Textura.png" id="2_tc2i0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tc2i0"]
+albedo_color = Color(0.52906674, 0.5290667, 0.5290667, 1)
+albedo_texture = ExtResource("2_tc2i0")
+metallic = 0.65
+metallic_specular = 1.0
+uv1_scale = Vector3(32, 32, 32)
+
+[node name="PosteLuz" unique_id=1438807519 instance=ExtResource("1_4opd2")]
+
+[node name="Cylinder" parent="." index="0" unique_id=1013896484]
+surface_material_override/0 = SubResource("StandardMaterial3D_tc2i0")
+
+[node name="Cylinder_001" parent="." index="1" unique_id=1868527183]
+surface_material_override/0 = SubResource("StandardMaterial3D_tc2i0")
+
+[node name="Cylinder_002" parent="." index="2" unique_id=891102109]
+surface_material_override/0 = SubResource("StandardMaterial3D_tc2i0")
+
+[node name="Cube" parent="." index="3" unique_id=707874004]
+surface_material_override/0 = SubResource("StandardMaterial3D_tc2i0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="4" unique_id=102821631]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.622879, 8.1259165, 0)
+light_color = Color(0.8627451, 0.92156863, 1, 1)
+light_energy = 5.0
+omni_range = 15.0

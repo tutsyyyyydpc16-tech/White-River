@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cil516cirk1i1"]
+
+[ext_resource type="PackedScene" uid="uid://5ynb86vmyvsc" path="res://forSceneContention/objects/wood_box.tscn" id="1_cxgp3"]
+
+[node name="Conjunto_caixas" type="Node3D" unique_id=14604725]
+
+[node name="wood_box" parent="." unique_id=1578258661 instance=ExtResource("1_cxgp3")]
+
+[node name="wood_box2" parent="." unique_id=1671646280 instance=ExtResource("1_cxgp3")]
+transform = Transform3D(0.6845471, 0, 0.7289686, 0, 1, 0, -0.7289686, 0, 0.6845471, 2.577827, 0, 1.0284039)
+
+[node name="wood_box3" parent="." unique_id=355392613 instance=ExtResource("1_cxgp3")]
+transform = Transform3D(-0.339132, 0, 0.9407388, 0, 1, 0, -0.9407388, 0, -0.339132, 1.208051, 2.1521986, -0.27825296)
+
+[node name="wood_box4" parent="." unique_id=545687181 instance=ExtResource("1_cxgp3")]
+transform = Transform3D(0.77963316, 0, 0.6262365, 0, 1, 0, -0.6262365, 0, 0.77963316, 2.050743, 0, -1.7213066)
+
+[node name="wood_box5" parent="." unique_id=742406983 instance=ExtResource("1_cxgp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.58517885, 0, -2.6419272)
+
+[node name="wood_box6" parent="." unique_id=821787340 instance=ExtResource("1_cxgp3")]
+transform = Transform3D(0.5167874, 0, 0.8561139, 0, 1, 0, -0.8561139, 0, 0.5167874, 1.4584132, 0, -4.38625)
+
+[node name="wood_box7" parent="." unique_id=1648901135 instance=ExtResource("1_cxgp3")]
+transform = Transform3D(0.99997616, 0, 0.0069289207, 0, 1, 0, -0.0069289207, 0, 0.99997616, 3.9184766, 0, -3.4353)
+
+[node name="wood_box8" parent="." unique_id=1348684223 instance=ExtResource("1_cxgp3")]
+transform = Transform3D(0.17897388, 0, 0.9838538, 0, 1, 0, -0.9838538, 0, 0.17897388, 2.354271, 2.1521986, -3.5040288)

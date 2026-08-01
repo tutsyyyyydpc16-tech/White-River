@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dsd3w6pjdxf3f"]
+
+[ext_resource type="PackedScene" uid="uid://c7rreh5iaubrx" path="res://models/objects/PortaHospital.glb" id="1_4tru0"]
+[ext_resource type="Script" uid="uid://ddqeji3fq4ian" path="res://stillImportant/area_3d.gd" id="2_kj4ya"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_4tru0"]
+data = PackedVector3Array(-0.1988, -0.2577, -2.0956, 0.020499999, 0.1625, -2.0952, -0.1988, 0.1625, -2.0956, -0.1988, -0.2577, -2.0956, 0.020499999, -0.2577, -2.0952, 0.020499999, 0.1625, -2.0952, -0.1988, -0.2577, -2.1085, 0.020499999, 0.1625, -2.1081998, 0.020499999, -0.2577, -2.1081998, -0.1988, -0.2577, -2.1085, -0.1988, 0.1625, -2.1085, 0.020499999, 0.1625, -2.1081998, -0.1988, 0.1625, -2.0956, -0.1988, -0.2577, -2.1085, -0.1988, -0.2577, -2.0956, -0.1988, 0.1625, -2.0956, -0.1988, 0.1625, -2.1085, -0.1988, -0.2577, -2.1085, 0.020499999, 0.1625, -2.0952, -0.1988, 0.1625, -2.1085, -0.1988, 0.1625, -2.0956, 0.020499999, 0.1625, -2.0952, 0.020499999, 0.1625, -2.1081998, -0.1988, 0.1625, -2.1085, 0.020499999, -0.2577, -2.0952, 0.020499999, 0.1625, -2.1081998, 0.020499999, 0.1625, -2.0952, 0.020499999, -0.2577, -2.0952, 0.020499999, -0.2577, -2.1081998, 0.020499999, 0.1625, -2.1081998, -0.1988, -0.2577, -2.0956, 0.020499999, -0.2577, -2.1081998, 0.020499999, -0.2577, -2.0952, -0.1988, -0.2577, -2.0956, -0.1988, -0.2577, -2.1085, 0.020499999, -0.2577, -2.1081998)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_kj4ya"]
+data = PackedVector3Array(-0.1988, -0.2577, -2.0956, 0.020499999, 0.1625, -2.0952, -0.1988, 0.1625, -2.0956, -0.1988, -0.2577, -2.0956, 0.020499999, -0.2577, -2.0952, 0.020499999, 0.1625, -2.0952, -0.1988, -0.2577, -2.1085, 0.020499999, 0.1625, -2.1081998, 0.020499999, -0.2577, -2.1081998, -0.1988, -0.2577, -2.1085, -0.1988, 0.1625, -2.1085, 0.020499999, 0.1625, -2.1081998, -0.1988, 0.1625, -2.0956, -0.1988, -0.2577, -2.1085, -0.1988, -0.2577, -2.0956, -0.1988, 0.1625, -2.0956, -0.1988, 0.1625, -2.1085, -0.1988, -0.2577, -2.1085, 0.020499999, 0.1625, -2.0952, -0.1988, 0.1625, -2.1085, -0.1988, 0.1625, -2.0956, 0.020499999, 0.1625, -2.0952, 0.020499999, 0.1625, -2.1081998, -0.1988, 0.1625, -2.1085, 0.020499999, -0.2577, -2.0952, 0.020499999, 0.1625, -2.1081998, 0.020499999, 0.1625, -2.0952, 0.020499999, -0.2577, -2.0952, 0.020499999, -0.2577, -2.1081998, 0.020499999, 0.1625, -2.1081998, -0.1988, -0.2577, -2.0956, 0.020499999, -0.2577, -2.1081998, 0.020499999, -0.2577, -2.0952, -0.1988, -0.2577, -2.0956, -0.1988, -0.2577, -2.1085, 0.020499999, -0.2577, -2.1081998)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3hw4x"]
+
+[node name="PortaHospital" unique_id=863628066 instance=ExtResource("1_4tru0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Entrada_001" parent_id_path=PackedInt32Array(1877714452) index="0" unique_id=1309794750]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Entrada_001/StaticBody3D" index="0" unique_id=24135059]
+shape = SubResource("ConcavePolygonShape3D_4tru0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Entrada_002" parent_id_path=PackedInt32Array(1426731193) index="0" unique_id=614627640]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Entrada_002/StaticBody3D" index="0" unique_id=1631699362]
+shape = SubResource("ConcavePolygonShape3D_kj4ya")
+
+[node name="porta_hospital" type="Area3D" parent="." index="2" unique_id=2104049949]
+script = ExtResource("2_kj4ya")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="porta_hospital" index="0" unique_id=1462248201]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.11314604, 0.1959197, 0)
+shape = SubResource("BoxShape3D_3hw4x")

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dt34pb85252yw"
+path="res://.godot/imported/Sound of Cena Rua.mp3-a1b0495d31d43ee9a8ef1d775dd54c4a.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Sound of Cena Rua.mp3"
+dest_files=["res://.godot/imported/Sound of Cena Rua.mp3-a1b0495d31d43ee9a8ef1d775dd54c4a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

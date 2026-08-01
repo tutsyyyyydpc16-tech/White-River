@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://b2exgvssb8jle"]
+
+[ext_resource type="Material" uid="uid://cktphifvg63k" path="res://colors/Cinza.tres" id="1_43dvu"]
+[ext_resource type="PackedScene" uid="uid://6ft1qa1llpfb" path="res://forSceneTest/player/player_test.tscn" id="1_kbjc3"]
+[ext_resource type="PackedScene" uid="uid://t0l2hkio156j" path="res://enemies/body_v_3.tscn" id="3_5b5qd"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_43dvu"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_n64p3"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_5b5qd"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5b5qd"]
+
+[sub_resource type="Sky" id="Sky_il1je"]
+sky_material = SubResource("ProceduralSkyMaterial_5b5qd")
+
+[sub_resource type="Environment" id="Environment_pr7p2"]
+background_mode = 2
+sky = SubResource("Sky_il1je")
+
+[node name="Teste" type="Node3D" unique_id=1371296148]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1580950666]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+mesh = SubResource("PlaneMesh_43dvu")
+surface_material_override/0 = ExtResource("1_43dvu")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=1345499094]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=1057896450]
+shape = SubResource("ConcavePolygonShape3D_n64p3")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="MeshInstance3D" unique_id=953893868]
+navigation_mesh = SubResource("NavigationMesh_5b5qd")
+
+[node name="player_contention" parent="." unique_id=186006650 instance=ExtResource("1_kbjc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.97508144, 12.354286)
+
+[node name="bodyV3" parent="." unique_id=1114346659 instance=ExtResource("3_5b5qd")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.2246225, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2100514379]
+environment = SubResource("Environment_pr7p2")

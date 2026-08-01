@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://3o8qwqvh0xbr"]
+
+[ext_resource type="Script" path="res://level/paper.gd" id="1_um1bo"]
+[ext_resource type="Texture2D" uid="uid://c755xbnwsr3n4" path="res://image/paperNote_dumb.png" id="2_1wqmw"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gjjrn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vysyd"]
+albedo_texture = ExtResource("2_1wqmw")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_4732f"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[node name="paper" type="Area3D" unique_id=1345769880 groups=["paper"]]
+script = ExtResource("1_um1bo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=389610512]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_gjjrn")
+surface_material_override/0 = SubResource("StandardMaterial3D_vysyd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1521856366]
+shape = SubResource("ConcavePolygonShape3D_4732f")

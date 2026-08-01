@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://brn2qhcjbrm0f"]
+
+[ext_resource type="Script" uid="uid://dd2kxbjqjk3lr" path="res://codes/inventory_slot.gd" id="1_68pn2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_os4ky"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.009317499, 0.009317501, 0.009317503, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_68pn2"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.15, 0.15, 0.15, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gpqwp"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.21, 0.21, 0.21, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="InventorySlot" type="Button" unique_id=767346089]
+custom_minimum_size = Vector2(66, 66)
+offset_right = 8.0
+offset_bottom = 8.0
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_os4ky")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_68pn2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gpqwp")
+script = ExtResource("1_68pn2")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1324183676]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1

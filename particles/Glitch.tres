@@ -1,0 +1,10 @@
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://b6ke5df76kxe4"]
+
+[resource]
+lifetime_randomness = 0.5
+particle_flag_rotate_y = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0

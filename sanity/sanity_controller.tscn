@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dhkd63wwbqsdy"]
+
+[ext_resource type="Script" uid="uid://dni5g1wp3o0gr" path="res://codes/sanity_controller.gd" id="1_gcf08"]
+
+[node name="SanityController" type="Node" unique_id=1543823102]
+script = ExtResource("1_gcf08")

@@ -1,0 +1,275 @@
+[gd_scene format=3 uid="uid://dr72kruha25gn"]
+
+[ext_resource type="Script" uid="uid://bpiiyybi47q7b" path="res://stillImportant/pause_menu.gd" id="1_hfvhq"]
+
+[node name="pause_menu" type="CanvasLayer" unique_id=738029466]
+layer = 2
+script = ExtResource("1_hfvhq")
+
+[node name="MainButtons" type="Control" parent="." unique_id=829926596]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -575.0
+offset_top = -326.0
+offset_right = 577.0
+offset_bottom = 316.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="MainButtons" unique_id=1942311917]
+layout_mode = 0
+offset_left = 349.0
+offset_top = 15.0
+offset_right = 836.0
+offset_bottom = 627.0
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MainButtons" unique_id=899676330]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 17.0
+offset_right = 838.0
+offset_bottom = 154.0
+theme_override_font_sizes/normal_font_size = 70
+theme_override_font_sizes/bold_font_size = 1
+theme_override_font_sizes/bold_italics_font_size = 1
+theme_override_font_sizes/italics_font_size = 1
+theme_override_font_sizes/mono_font_size = 1
+bbcode_enabled = true
+text = "[center]Paused"
+
+[node name="resume" type="Button" parent="MainButtons" unique_id=62271143]
+layout_mode = 0
+offset_left = 495.0
+offset_top = 122.0
+offset_right = 696.0
+offset_bottom = 199.0
+theme_override_font_sizes/font_size = 50
+text = "Resume"
+
+[node name="settings" type="Button" parent="MainButtons" unique_id=1040074981]
+layout_mode = 0
+offset_left = 495.0
+offset_top = 224.0
+offset_right = 697.0
+offset_bottom = 301.0
+theme_override_font_sizes/font_size = 50
+text = "Settings"
+
+[node name="controls" type="Button" parent="MainButtons" unique_id=118395238]
+layout_mode = 0
+offset_left = 495.0
+offset_top = 324.0
+offset_right = 707.0
+offset_bottom = 401.0
+theme_override_font_sizes/font_size = 50
+text = "Controls
+"
+
+[node name="main_menu" type="Button" parent="MainButtons" unique_id=345069922]
+layout_mode = 0
+offset_left = 462.0
+offset_top = 424.0
+offset_right = 742.0
+offset_bottom = 501.0
+theme_override_font_sizes/font_size = 50
+text = "Main Menu"
+
+[node name="quit_game" type="Button" parent="MainButtons" unique_id=1324824806]
+layout_mode = 0
+offset_left = 495.0
+offset_top = 521.0
+offset_right = 696.0
+offset_bottom = 598.0
+theme_override_font_sizes/font_size = 50
+text = "Quit
+"
+
+[node name="SettingsPanel" type="Panel" parent="." unique_id=187976200]
+visible = false
+offset_right = 1155.0
+offset_bottom = 645.0
+
+[node name="ColorRect" type="ColorRect" parent="SettingsPanel" unique_id=949307226]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MusicSlider" type="HSlider" parent="SettingsPanel" unique_id=177906500]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 0
+offset_left = 49.0
+offset_top = 43.0
+offset_right = 249.0
+offset_bottom = 83.0
+scale = Vector2(3, 3)
+max_value = 2.0
+step = 0.1
+value = 0.5
+
+[node name="Music" type="Label" parent="SettingsPanel/MusicSlider" unique_id=196679652]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -12.666664
+offset_right = 56.0
+offset_bottom = 10.333336
+text = "Music"
+
+[node name="BackButton" type="Button" parent="SettingsPanel" unique_id=1872945372]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 535.0
+offset_right = 240.0
+offset_bottom = 609.0
+
+[node name="Label" type="Label" parent="SettingsPanel/BackButton" unique_id=1309616542]
+layout_mode = 0
+offset_right = 101.5
+offset_bottom = 38.0
+scale = Vector2(2, 2)
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FullScreenBox" type="CheckBox" parent="SettingsPanel" unique_id=1103940105]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 301.0
+offset_right = 66.0
+offset_bottom = 325.0
+scale = Vector2(3, 3)
+
+[node name="FullScreen" type="Label" parent="SettingsPanel/FullScreenBox" unique_id=854976708]
+layout_mode = 0
+offset_left = 5.333334
+offset_top = -17.666656
+offset_right = 133.0
+offset_bottom = 5.3333435
+text = "Full Screen"
+
+[node name="SoundSlider" type="HSlider" parent="SettingsPanel" unique_id=436438601]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 188.00002
+offset_right = 244.33334
+offset_bottom = 212.00002
+scale = Vector2(3, 3)
+max_value = 2.0
+step = 0.1
+value = 0.5
+
+[node name="Sound" type="Label" parent="SettingsPanel/SoundSlider" unique_id=1039455538]
+layout_mode = 0
+offset_left = 5.333334
+offset_top = -18.000004
+offset_right = 133.0
+offset_bottom = 4.999996
+text = "Sound"
+
+[node name="BrigthnessSlider" type="HSlider" parent="SettingsPanel" unique_id=1229281185]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 397.0
+offset_right = 266.0
+offset_bottom = 440.66666
+scale = Vector2(3, 3)
+max_value = 2.0
+step = 0.1
+
+[node name="Brigthness" type="Label" parent="SettingsPanel/BrigthnessSlider" unique_id=871294776]
+layout_mode = 0
+offset_top = -10.0
+offset_right = 83.0
+offset_bottom = 23.0
+text = "Brigthness"
+
+[node name="ControlsPanel" type="Panel" parent="." unique_id=2104685461]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="ControlsPanel" unique_id=1858009131]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label (Controls)" type="Label" parent="ControlsPanel" unique_id=37301559]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -580.0
+offset_top = -300.0
+offset_right = -473.5
+offset_bottom = -275.75
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+text = "Controls"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label (Move)" type="Label" parent="ControlsPanel" unique_id=528709858]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 114.0
+offset_right = 530.0
+offset_bottom = 451.33334
+scale = Vector2(1.5, 1.5)
+text = "W - Move Forward
+
+S - 	Move Backward
+
+A - Move Left
+
+D - Move Right
+
+E - Interact
+
+ESC - Pause
+"
+
+[node name="BackButton" type="Button" parent="ControlsPanel" unique_id=925230925]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 553.0
+offset_right = 268.0
+offset_bottom = 627.0
+
+[node name="Label" type="Label" parent="ControlsPanel/BackButton" unique_id=80588698]
+layout_mode = 0
+offset_left = -3.0
+offset_right = 100.5
+offset_bottom = 38.0
+scale = Vector2(2, 2)
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="MainButtons/settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MainButtons/controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="MainButtons/main_menu" to="." method="_on_main_menu_pressed"]
+[connection signal="value_changed" from="SettingsPanel/MusicSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="value_changed" from="SettingsPanel/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="pressed" from="SettingsPanel/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="toggled" from="SettingsPanel/FullScreenBox" to="." method="_on_full_screen_box_toggled"]
+[connection signal="value_changed" from="SettingsPanel/SoundSlider" to="." method="_on_sound_slider_value_changed"]
+[connection signal="value_changed" from="SettingsPanel/BrigthnessSlider" to="." method="_on_brigthness_slider_value_changed"]
+[connection signal="pressed" from="ControlsPanel/BackButton" to="." method="_on_back_button_pressed"]

@@ -1,0 +1,347 @@
+[gd_scene format=3 uid="uid://cf00b3tqj20rj"]
+
+[ext_resource type="Script" uid="uid://poue6d8yii4e" path="res://forSceneTest/scripts/player_sand_box.gd" id="1_hl0u3"]
+[ext_resource type="Texture2D" uid="uid://04hrvltaykn4" path="res://kenney_cursor-pixel-pack/Tiles/tile_0189.png" id="2_e7pcl"]
+[ext_resource type="PackedScene" uid="uid://bmuctybiuymyl" path="res://Interaction/interaction_controller.tscn" id="2_y508u"]
+[ext_resource type="Texture2D" uid="uid://k6io6l61lfne" path="res://kenney_cursor-pixel-pack/Tiles/tile_0136.png" id="3_qsqx2"]
+[ext_resource type="Texture2D" uid="uid://wnab6j34ggai" path="res://kenney_cursor-pixel-pack/Tiles/tile_0139.png" id="4_8deqf"]
+[ext_resource type="Texture2D" uid="uid://qcgkn7fwhybk" path="res://kenney_cursor-pixel-pack/Tiles/tile_0196.png" id="5_bkjg7"]
+[ext_resource type="Shader" uid="uid://r7p2cq0hsj5i" path="res://shader/pixel.gdshader" id="6_w3o04"]
+[ext_resource type="PackedScene" uid="uid://dhkd63wwbqsdy" path="res://sanity/sanity_controller.tscn" id="7_7tyjg"]
+[ext_resource type="Shader" uid="uid://beilh4mdw0yrq" path="res://shader/barrel_distortion.gdshader" id="7_br8g3"]
+[ext_resource type="Texture2D" uid="uid://dedboos1je7ab" path="res://image/icon.svg" id="8_3arxy"]
+[ext_resource type="Shader" uid="uid://dlecrsko0x5dd" path="res://shader/crt.gdshader" id="8_br8g3"]
+[ext_resource type="Shader" uid="uid://3bjo81fooaw4" path="res://shader/note_fade.gdshader" id="8_sl5nf"]
+[ext_resource type="PackedScene" uid="uid://d0oktif46rl1t" path="res://Inventory/inventory_controller.tscn" id="10_o77to"]
+[ext_resource type="Shader" uid="uid://b0y2iqugewh46" path="res://shader/distortion.gdshader" id="10_sl5nf"]
+[ext_resource type="Shader" uid="uid://d31kxtmb7ammk" path="res://shader/puzzle_complete.gdshader" id="13_sl5nf"]
+[ext_resource type="AudioStream" uid="uid://db8r1hcqhg6bs" path="res://Sounds/assets_sound_effects_footstep05.ogg" id="14_f4km0"]
+[ext_resource type="AudioStream" uid="uid://dxipo3er2xuyg" path="res://Sounds/jump.wav" id="15_opky1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h1eem"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hl0u3"]
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7tyjg"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_3arxy"]
+material = SubResource("StandardMaterial3D_7tyjg")
+radius = 0.3
+height = 0.6
+radial_segments = 4
+rings = 1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qsqx2"]
+radius = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sl5nf"]
+shader = ExtResource("8_br8g3")
+shader_parameter/overlay = false
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/brightness = 1.4
+shader_parameter/scanlines_opacity = 0.0
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.0
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/aberration = 0.03
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/pixelate = false
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.50000002375
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_opky1"]
+shader = ExtResource("7_br8g3")
+shader_parameter/distortion_strength = 0.5
+shader_parameter/distortion_radius = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f4km0"]
+shader = ExtResource("6_w3o04")
+shader_parameter/pixel_size = 4.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ioe7u"]
+shader = ExtResource("8_sl5nf")
+shader_parameter/rect_width_px = 750.0
+shader_parameter/fade_width_px = 100.0
+shader_parameter/fade_strength = 0.750000035625
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o77to"]
+shader = ExtResource("10_sl5nf")
+shader_parameter/chaos = 1.0
+shader_parameter/radius = 0.5
+shader_parameter/attenuation = 2.0
+shader_parameter/distortion_strength = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bkjg7"]
+shader = ExtResource("13_sl5nf")
+shader_parameter/alpha = 0.0
+
+[node name="PlayerSandBox" type="CharacterBody3D" unique_id=6780333]
+script = ExtResource("1_hl0u3")
+
+[node name="StandingCollisionShape" type="CollisionShape3D" parent="." unique_id=1904698703]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_h1eem")
+
+[node name="CrouchingCollisionShape" type="CollisionShape3D" parent="." unique_id=570546244]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_hl0u3")
+
+[node name="Head" type="Node3D" parent="." unique_id=2055850100]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="Eyes" type="Node3D" parent="Head" unique_id=470893192]
+
+[node name="Camera3D" type="Camera3D" parent="Head/Eyes" unique_id=2121518746]
+unique_name_in_owner = true
+cull_mask = 524285
+fov = 90.0
+
+[node name="InteractionRayCast" type="RayCast3D" parent="Head/Eyes/Camera3D" unique_id=1148487244]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, -2)
+
+[node name="Hand" type="Marker3D" parent="Head/Eyes/Camera3D" unique_id=337482162]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Head/Eyes/Camera3D" unique_id=76453664]
+remote_path = NodePath("../../SubViewportContainer/SubViewport/NoteCamera")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Head/Eyes" unique_id=770685990]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Head/Eyes/SubViewportContainer" unique_id=405648389]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="NoteCamera" type="Camera3D" parent="Head/Eyes/SubViewportContainer/SubViewport" unique_id=1000726045]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+cull_mask = 2
+fov = 90.0
+
+[node name="NoteHand" type="Marker3D" parent="Head/Eyes/SubViewportContainer/SubViewport/NoteCamera" unique_id=624571350]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, -0.24981761, -0.75)
+
+[node name="ItemHand" type="Marker3D" parent="Head/Eyes/SubViewportContainer/SubViewport/NoteCamera" unique_id=197652168]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -0.25, -0.75)
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1696314612]
+unique_name_in_owner = true
+size = Vector2i(16, 16)
+render_target_update_mode = 4
+
+[node name="LightDetection" type="Node3D" parent="SubViewport" unique_id=1335235414]
+unique_name_in_owner = true
+
+[node name="LightCamera" type="Camera3D" parent="SubViewport/LightDetection" unique_id=1820988063]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.8, 0)
+fov = 20.0
+far = 1.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/LightDetection" unique_id=1384266345]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 0, 0.85, 0)
+layers = 524288
+mesh = SubResource("SphereMesh_3arxy")
+
+[node name="StandUpCheck" type="RayCast3D" parent="." unique_id=1596565567]
+target_position = Vector3(0, 2, 0)
+
+[node name="InteractableCheck" type="Area3D" parent="." unique_id=466891524]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableCheck" unique_id=2077631408]
+shape = SubResource("SphereShape3D_qsqx2")
+
+[node name="GUI" type="Node" parent="." unique_id=970267321]
+
+[node name="ReticleLayer" type="CanvasLayer" parent="GUI" unique_id=317064602]
+
+[node name="Control" type="Control" parent="GUI/ReticleLayer" unique_id=99048338]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DefaultReticle" type="TextureRect" parent="GUI/ReticleLayer/Control" unique_id=2116180024]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_e7pcl")
+stretch_mode = 3
+
+[node name="HighlightReticle" type="TextureRect" parent="GUI/ReticleLayer/Control" unique_id=1867846698]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_qsqx2")
+stretch_mode = 3
+
+[node name="InteractingReticle" type="TextureRect" parent="GUI/ReticleLayer/Control" unique_id=1713745371]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_8deqf")
+stretch_mode = 3
+
+[node name="UseReticle" type="TextureRect" parent="GUI/ReticleLayer/Control" unique_id=1887842150]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_bkjg7")
+stretch_mode = 3
+
+[node name="Debug" type="Label" parent="GUI/ReticleLayer/Control" unique_id=2106183280]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 60.0
+offset_bottom = 62.0
+theme_override_font_sizes/font_size = 30
+
+[node name="CRT" type="CanvasLayer" parent="GUI" unique_id=458235204]
+
+[node name="ColorRect" type="ColorRect" parent="GUI/CRT" unique_id=840531703]
+material = SubResource("ShaderMaterial_sl5nf")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Barrel" type="CanvasLayer" parent="GUI" unique_id=809228728]
+layer = 0
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GUI/Barrel" unique_id=1546314538]
+material = SubResource("ShaderMaterial_opky1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pixel" type="CanvasLayer" parent="GUI" unique_id=1347256587]
+layer = 0
+
+[node name="ColorRect" type="ColorRect" parent="GUI/Pixel" unique_id=1945381233]
+material = SubResource("ShaderMaterial_f4km0")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="GUI" unique_id=1499935238]
+
+[node name="NoteOverlay" type="Control" parent="GUI/CanvasLayer" unique_id=1085566238]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BlackOverlay" type="ColorRect" parent="GUI/CanvasLayer/NoteOverlay" unique_id=1364333885]
+material = SubResource("ShaderMaterial_ioe7u")
+layout_mode = 0
+offset_left = 575.0
+offset_right = 1150.0
+offset_bottom = 650.0
+color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" parent="GUI/CanvasLayer/NoteOverlay" unique_id=870093612]
+anchors_preset = 0
+offset_left = 675.0
+offset_top = 25.0
+offset_right = 1125.0
+offset_bottom = 625.0
+
+[node name="NoteContent" type="RichTextLabel" parent="GUI/CanvasLayer/NoteOverlay/Control" unique_id=2011520324]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "test test that"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionController" parent="." unique_id=2013384041 instance=ExtResource("2_y508u")]
+unique_name_in_owner = true
+
+[node name="InventoryController" parent="." unique_id=1282204434 instance=ExtResource("10_o77to")]
+unique_name_in_owner = true
+
+[node name="InventoryUI" parent="InventoryController/CanvasLayer" parent_id_path=PackedInt32Array(1282204434, 1659720769) index="0" unique_id=1849450526]
+visible = false
+
+[node name="SanityController" parent="." unique_id=1543823102 instance=ExtResource("7_7tyjg")]
+unique_name_in_owner = true
+
+[node name="Distortion" type="Sprite2D" parent="SanityController" unique_id=1474681125]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_o77to")
+position = Vector2(582, 327.5)
+scale = Vector2(10.09375, 6.1171875)
+texture = ExtResource("8_3arxy")
+
+[node name="PuzzleComplete" type="Sprite2D" parent="SanityController" unique_id=1354582579]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_bkjg7")
+position = Vector2(578.5, 325.5)
+scale = Vector2(10.0390625, 6.0859375)
+texture = ExtResource("8_3arxy")
+
+[node name="Audio" type="Node3D" parent="." unique_id=1343162819]
+
+[node name="Footsteps" type="AudioStreamPlayer3D" parent="Audio" unique_id=1299173204]
+unique_name_in_owner = true
+stream = ExtResource("14_f4km0")
+volume_db = -20.0
+
+[node name="Jump" type="AudioStreamPlayer3D" parent="Audio" unique_id=1559086799]
+unique_name_in_owner = true
+stream = ExtResource("15_opky1")
+volume_db = 10.0
+
+[editable path="InventoryController"]

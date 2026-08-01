@@ -1,0 +1,337 @@
+[gd_scene format=3 uid="uid://f367fm4gm1k0"]
+
+[ext_resource type="Script" uid="uid://cmr8b8sjjfc0m" path="res://codes/player.gd" id="1_sv21f"]
+[ext_resource type="Script" uid="uid://casoaq08fm0j8" path="res://trash/fp_cam.gd" id="2_7raem"]
+[ext_resource type="PackedScene" uid="uid://xpa0xql5lb3o" path="res://forSceneContention/objects/flashlight.tscn" id="4_kg1a2"]
+[ext_resource type="PackedScene" uid="uid://bk8g5pxnlqy2t" path="res://stillImportant/braco.glb" id="5_aqdqh"]
+[ext_resource type="Script" uid="uid://crbsafgexdb1w" path="res://stillImportant/ray_cast_3d_rua.gd" id="6_sv21f"]
+[ext_resource type="Script" uid="uid://nauf3qqkqw30" path="res://forSceneContention/scripts/player_contention_ui.gd" id="7_d5dqq"]
+[ext_resource type="Shader" uid="uid://r7p2cq0hsj5i" path="res://shader/pixel.gdshader" id="8_03p4h"]
+[ext_resource type="Texture2D" uid="uid://b6w6wbtsa412s" path="res://stillImportant/point.png" id="9_k13o4"]
+[ext_resource type="Script" uid="uid://p3tofk110idm" path="res://stillImportant/inventory.gd" id="10_eux3i"]
+[ext_resource type="Texture2D" uid="uid://egyjxbdbwck7" path="res://trash/background.png" id="11_wjdxo"]
+[ext_resource type="Script" uid="uid://j6uofuqo1s5n" path="res://stillImportant/paper_ui.gd" id="12_gu1pv"]
+[ext_resource type="Texture2D" uid="uid://8rgo0lbkx107" path="res://trash/oldPaper.png" id="13_k25by"]
+[ext_resource type="FontFile" uid="uid://cn1ujhnngdflj" path="res://fonts/VanillaCreamOx-Regular.otf" id="14_ei412"]
+[ext_resource type="PackedScene" uid="uid://cxdesysowmxcw" path="res://stillImportant/task_ui.tscn" id="15_78jx2"]
+[ext_resource type="PackedScene" uid="uid://dr72kruha25gn" path="res://stillImportant/pause_menu.tscn" id="16_hifsl"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_kqu6x"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oul6g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ebec5"]
+shader = ExtResource("8_03p4h")
+shader_parameter/pixel_size = 4.0
+
+[node name="PlayerRua" type="CharacterBody3D" unique_id=186006650 groups=["PlayerRua"]]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+script = ExtResource("1_sv21f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1782332095]
+cast_shadow = 0
+mesh = SubResource("CapsuleMesh_kqu6x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2100513706]
+shape = SubResource("CapsuleShape3D_oul6g")
+
+[node name="Head" type="Node3D" parent="." unique_id=1979953244]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9062251, -0.21841156)
+script = ExtResource("2_7raem")
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=10921627]
+
+[node name="SpotLight3D" parent="Head/Camera3D" unique_id=781583958 instance=ExtResource("4_kg1a2")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.5276067, 0.056901217, -0.49720788)
+
+[node name="braco" parent="Head/Camera3D/SpotLight3D" unique_id=1417951411 instance=ExtResource("5_aqdqh")]
+transform = Transform3D(1.1621321, 0.37869447, 0.26180008, 0.46037894, -0.9559363, -0.6608608, -7.4505806e-08, 0.7108278, -1.0282139, -0.771533, -0.7559265, -0.031883717)
+
+[node name="RayCast3DRua" type="RayCast3D" parent="Head" unique_id=1576781249]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.21634626)
+target_position = Vector3(0, -3, 0)
+collide_with_areas = true
+script = ExtResource("6_sv21f")
+
+[node name="player_contention_ui" type="Control" parent="." unique_id=408273298]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_d5dqq")
+
+[node name="Pixel" type="CanvasLayer" parent="player_contention_ui" unique_id=1016208548]
+layer = 0
+
+[node name="ColorRect" type="ColorRect" parent="player_contention_ui/Pixel" unique_id=1057059855]
+material = SubResource("ShaderMaterial_ebec5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="player_contention_ui" unique_id=1056919269]
+
+[node name="CenterContainer" type="CenterContainer" parent="player_contention_ui/CanvasLayer" unique_id=1539863801]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1150.0
+offset_bottom = 642.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+
+[node name="crosshair" type="TextureRect" parent="player_contention_ui/CanvasLayer/CenterContainer" unique_id=675275875]
+layout_mode = 2
+texture = ExtResource("9_k13o4")
+
+[node name="Mensage" type="Control" parent="player_contention_ui/CanvasLayer" unique_id=705976537]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="player_contention_ui/CanvasLayer/Mensage" unique_id=1589447357]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -69.0
+offset_right = 1163.0
+offset_bottom = 570.0
+theme_override_font_sizes/font_size = 23
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="DialoguePanel2" type="Control" parent="player_contention_ui/CanvasLayer" unique_id=191607919]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label2" type="Label" parent="player_contention_ui/CanvasLayer/DialoguePanel2" unique_id=1792134162]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -69.0
+offset_right = 1163.0
+offset_bottom = 570.0
+theme_override_font_sizes/font_size = 23
+text = "What the hell?"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Inventory" type="Control" parent="player_contention_ui/CanvasLayer" unique_id=113399208]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_eux3i")
+
+[node name="TextureRect" type="TextureRect" parent="player_contention_ui/CanvasLayer/Inventory" unique_id=1766166252]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_wjdxo")
+
+[node name="paper" type="Control" parent="player_contention_ui/CanvasLayer/Inventory" unique_id=696994975 groups=["paper_ui"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_gu1pv")
+
+[node name="paper_ui" type="TextureRect" parent="player_contention_ui/CanvasLayer/Inventory/paper" unique_id=751241579]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.5
+offset_top = -285.5
+offset_right = 188.5
+offset_bottom = 285.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_k25by")
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="player_contention_ui/CanvasLayer/Inventory/paper" unique_id=1781611968]
+layout_mode = 0
+offset_left = 393.00003
+offset_top = 42.000004
+offset_right = 856.0337
+offset_bottom = 648.0
+rotation = -0.017453292
+theme_override_colors/font_color = Color(0.05799634, 0.057996355, 0.05799631, 1)
+theme_override_fonts/font = ExtResource("14_ei412")
+theme_override_font_sizes/font_size = 25
+text = "CONFIDENTIAL
+
+Subject-01 Markus A. (Active)
+ID: 2010-032
+
+Subject-02 Danel K. (Not Found)
+ID: 2010-56
+
+Subject-03 Vitor M. (Not Found)
+ID: 2010-34
+
+Subject-04 Elena V. (Not Found)
+ID: 2010-98
+
+Subjetc-05 Rebeca S. (Missing)
+ID: 2010-12
+
+Subject-06 Isabelly R. (Found)
+ID: 2010-66
+
+"
+
+[node name="paper2" type="Control" parent="player_contention_ui/CanvasLayer/Inventory" unique_id=26569762 groups=["paper_ui"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_gu1pv")
+
+[node name="paper_ui2" type="TextureRect" parent="player_contention_ui/CanvasLayer/Inventory/paper2" unique_id=720262139]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.5
+offset_top = -285.5
+offset_right = 188.5
+offset_bottom = 285.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_k25by")
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="player_contention_ui/CanvasLayer/Inventory/paper2" unique_id=538121375]
+layout_mode = 0
+offset_left = 396.99997
+offset_top = 55.999996
+offset_right = 876.0
+offset_bottom = 662.0
+rotation = -0.017453292
+scale = Vector2(0.77, 0.77)
+theme_override_colors/font_color = Color(0.05799634, 0.057996355, 0.05799631, 1)
+theme_override_fonts/font = ExtResource("14_ei412")
+theme_override_font_sizes/font_size = 25
+text = "We successfully transferred Subject-06
+to one of the  containment cells.
+It's strange how a mother can report her
+own daughter.
+Subject-06 spent some time in a psychiatric
+hospital, and all her information was there:
+address, name, family records, everything.
+Finding her was easier than expected.
+She will be an excellent subject for further
+observation and experimentation.
+
+We still have no sign of the others.
+Except for Subject-01.
+He remains active somewhere in the city.
+According to the reports, he was the one
+who started all of this. Patient Zero.
+Containment has failed.
+The city is gone.
+And what remains of it?
+Only memories of what was once a city.
+
+May God have mercy on us."
+
+[node name="paper_dumb" type="Control" parent="player_contention_ui/CanvasLayer/Inventory" unique_id=457511228 groups=["paper_ui"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_gu1pv")
+
+[node name="paper_ui2" type="TextureRect" parent="player_contention_ui/CanvasLayer/Inventory/paper_dumb" unique_id=1302819119]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.5
+offset_top = -285.5
+offset_right = 188.5
+offset_bottom = 285.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_k25by")
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="player_contention_ui/CanvasLayer/Inventory/paper_dumb" unique_id=1608927331]
+layout_mode = 0
+offset_left = 396.99997
+offset_top = 55.999996
+offset_right = 876.0
+offset_bottom = 662.0
+rotation = -0.017453292
+scale = Vector2(0.77, 0.77)
+theme_override_colors/font_color = Color(0.05799634, 0.057996355, 0.05799631, 1)
+theme_override_fonts/font = ExtResource("14_ei412")
+theme_override_font_sizes/font_size = 52
+text = "EVERYONE IS DUMB DUMB
+DUMB DUMB DUMB DUMB
+DUMB DUMB DUMB DUMB
+DUMB DUMB DUMB DUMB
+DUMB DUMB DUMB DUMB
+DUMB DUMB DUMB DUMB
+DUMB DUMB DUMB DUMB
+DUMB DUMB DUMB DUMB
+DUMB DUMB DUMB DUMB
+DUMB DUMB DUMB DUMB
+DUMB DUMB DUMB DUMB
+DUMB DUMB DUMB DUMB"
+
+[node name="task_ui" parent="player_contention_ui" unique_id=1227124689 instance=ExtResource("15_78jx2")]
+layer = 2
+
+[node name="pause_menu" parent="player_contention_ui" unique_id=738029466 instance=ExtResource("16_hifsl")]
+layer = 3
+visible = false
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="player_contention_ui" unique_id=1423423074]
+
+[node name="ColorRect" type="ColorRect" parent="player_contention_ui/CanvasLayer2" unique_id=8862083]
+visible = false
+offset_right = 1151.0
+offset_bottom = 649.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="player_contention_ui/CanvasLayer2" unique_id=2023875460]
+visible = false
+offset_right = 1152.0
+offset_bottom = 647.0
+theme_override_font_sizes/font_size = 47
+text = "What Happened?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="player_contention_ui/pause_menu/MainButtons/resume" to="player_contention_ui" method="resume_game"]
+[connection signal="pressed" from="player_contention_ui/pause_menu/MainButtons/quit_game" to="player_contention_ui" method="quit_game"]
+
+[editable path="player_contention_ui/pause_menu"]
