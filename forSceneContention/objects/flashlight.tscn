@@ -119,5 +119,6 @@ spot_angle = 30.0
 
 [node name="EquippableInteraction" type="Node" parent="." unique_id=1111307881]
 script = ExtResource("2_17r2w")
+is_flashlight = true
 item_data = SubResource("Resource_a7jgt")
 metadata/_custom_type_script = "uid://wbut10np25bi"

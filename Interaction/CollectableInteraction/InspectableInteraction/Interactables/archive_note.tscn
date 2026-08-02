@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://bxlgwph42nuql"]
+
+[ext_resource type="Texture2D" uid="uid://bvxmw4qkweq2i" path="res://image/paperNote_oneArchive.png" id="1_b1qpp"]
+[ext_resource type="PackedScene" uid="uid://b643wshsk38qw" path="res://Interaction/CollectableInteraction/InspectableInteraction/inspectable_interaction.tscn" id="2_dyc2l"]
+[ext_resource type="AudioStream" uid="uid://bvyqofse1cmtg" path="res://Sounds/drawKnife2.ogg" id="3_orp1d"]
+[ext_resource type="Script" uid="uid://du3vhe6yswtnb" path="res://Inventory/Actions/inspectable_action.gd" id="4_sgwy5"]
+[ext_resource type="Texture2D" uid="uid://dny5hnutb7gx3" path="res://image/paperNote_list.png" id="5_v2cl0"]
+[ext_resource type="Script" uid="uid://bmuhy8m8g37oh" path="res://Inventory/item_data.gd" id="6_hyqj7"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2r3wn"]
+size = Vector2(1.4, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4lve1"]
+albedo_color = Color(0.41, 0.41, 0.41, 1)
+albedo_texture = ExtResource("1_b1qpp")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rmdmd"]
+size = Vector3(1.6, 0.3, 2.1)
+
+[sub_resource type="Resource" id="Resource_pgu6o"]
+script = ExtResource("4_sgwy5")
+metadata/_custom_type_script = "uid://du3vhe6yswtnb"
+
+[sub_resource type="Resource" id="Resource_o5mgu"]
+script = ExtResource("6_hyqj7")
+item_name = "note2"
+item_icon = ExtResource("5_v2cl0")
+action_data = SubResource("Resource_pgu6o")
+metadata/_custom_type_script = "uid://bmuhy8m8g37oh"
+
+[node name="TextNote" type="StaticBody3D" unique_id=10058687]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=406428713]
+mesh = SubResource("PlaneMesh_2r3wn")
+surface_material_override/0 = SubResource("StandardMaterial3D_4lve1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1431304724]
+shape = SubResource("BoxShape3D_rmdmd")
+
+[node name="InspectableInteraction" parent="." unique_id=190712381 instance=ExtResource("2_dyc2l")]
+content = "We successfully transferred Subject-06 to one of the containment cells,
+It's strange how a mother can report her own daughter.
+
+Subject-06 spent some time in a psychiatric hospital,
+and all her information was there: address, name, family records, everything,
+Finding her was easier than expected.
+
+She will be an excellent subject for further observation and experimentation.
+
+---
+
+We still have no sign of the others,
+Except for Subject-01.
+
+He remains active somewhere in the city,
+According to the reports, he was the one who started all of this, Patient Zero.
+
+Containment has failed,
+The city is gone.
+
+And what remains of it?
+Only memories of what was once a city.
+"
+collect_sound_effect = ExtResource("3_orp1d")
+item_data = SubResource("Resource_o5mgu")

@@ -10,6 +10,7 @@ extends CharacterBody3D
 @onready var footsteps_se: AudioStreamPlayer3D = %Footsteps
 @onready var jump_se: AudioStreamPlayer3D = %Jump
 @onready var note_camera: Camera3D = %NoteCamera
+@onready var flashlight: StaticBody3D = %Flashlight
 
 #Nota variáveis
 @onready var note_hand: Marker3D = %NoteHand
@@ -76,6 +77,10 @@ var inventory_opened_flag: bool = false
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	var deco_collision = flashlight.find_child("CollisionShape3D", true, false)
+	if deco_collision:
+		deco_collision.disabled = true
 		
 func _input(event: InputEvent) -> void:
 	#if Input.is_action_just_pressed("quit"):

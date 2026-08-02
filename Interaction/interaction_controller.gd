@@ -12,7 +12,8 @@ extends Node
 @onready var inventory_controller: InventoryController = $"../InventoryController/CanvasLayer/InventoryUI"
 @onready var outline_material: Material = preload("res://itemHighlight/iteml.tres")
 @onready var sanity_controller: Node = %SanityController
-@onready var flashlight_spotlight: StaticBody3D = %Flashlight
+@onready var flashlight_model: StaticBody3D = %Flashlight
+@onready var flashlight_light: SpotLight3D = %Flashlight/SpotLight3D
 @onready var flashlight_arm: Node3D = %Arm
 
 @onready var default_reticle: TextureRect = %DefaultReticle
@@ -156,7 +157,7 @@ func _input(event: InputEvent) -> void:
 		_use_equipped_item()
 		
 	if flashlight_equipped and event.is_action_pressed("flashlight"):
-		flashlight_spotlight.visible = not flashlight_spotlight.visible
+		flashlight_light.visible = not flashlight_light.visible
 		
 
 ## Determines if the object the player is interacting with should stop mouse camera movement
@@ -193,6 +194,9 @@ func on_note_inspected(note: Node3D):
 	# Change rendering layer for the note mesh so it doesnt clip into walls
 	_change_mesh_layer(note_interaction_component.meshes, 2)
 	
+	# Make the note ignore scene lighting so it's always readable, even in dark rooms
+	_make_meshes_unshaded(note_interaction_component.meshes)
+	
 	# Remove collision shapes so the note doesnt push on player or other physics objects
 	_remove_collision_shapes(note_interaction_component.collision_shapes)
 	
@@ -200,6 +204,8 @@ func on_note_inspected(note: Node3D):
 	current_note.transform.origin = note_hand.transform.origin
 	current_note.position = Vector3(0.0,0.0,0.0)
 	current_note.rotation_degrees = Vector3(90,10,0)
+	
+	current_note.scale = Vector3(0.4, 0.4, 0.4)
 	
 	# Show the note overlay as well the note text
 	note_overlay.visible = true
@@ -251,7 +257,8 @@ func on_item_equipped(item: Node3D):
 	if equipped_item_interaction_component is EquippableInteraction and equipped_item_interaction_component.is_flashlight:
 		flashlight_equipped = true
 		flashlight_arm.visible = true
-		flashlight_spotlight.visible = false
+		flashlight_model.visible = true
+		flashlight_light.visible = false
 		
 		if item is RigidBody3D:
 			item.freeze = true
@@ -305,6 +312,7 @@ func _use_equipped_item() -> void:
 				equipped_item.queue_free()
 				equipped_item = null
 				item_equipped = false
+				_unequip_flashlight()
 			# Play a sound effect and inform the player via text that the item was successfully used
 			interact_success_player.play()
 			return
@@ -323,8 +331,15 @@ func _use_equipped_item() -> void:
 	item_equipped = false
 	current_object = null
 	potential_interaction_component = null
+	_unequip_flashlight()
 	
-	
+## Hides the camera-mounted flashlight arm/light decoration when the flashlight is no longer equipped
+func _unequip_flashlight() -> void:
+	if flashlight_equipped:
+		flashlight_equipped = false
+		flashlight_arm.visible = false
+		flashlight_model.visible = false
+
 ## Adds the given item data to the first open inventory slot
 func _add_item_to_inventory(item_data: ItemData):
 	if item_data != null:
@@ -422,3 +437,15 @@ func _update_reticle_state() -> void:
 
 	# Fallback: default reticle
 	default_reticle.visible = true
+
+## Makes each surface material of the provided meshes ignore scene lighting entirely,
+## so held notes stay readable even in pitch black rooms. Duplicates the material first
+## so the original material used by the mesh in the world isn't permanently modified.
+func _make_meshes_unshaded(meshes: Array[MeshInstance3D]) -> void:
+	for mesh in meshes:
+		for surface_idx in mesh.get_surface_override_material_count():
+			var original_material: Material = mesh.get_active_material(surface_idx)
+			if original_material and original_material is BaseMaterial3D:
+				var unshaded_material: BaseMaterial3D = original_material.duplicate()
+				unshaded_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+				mesh.set_surface_override_material(surface_idx, unshaded_material)

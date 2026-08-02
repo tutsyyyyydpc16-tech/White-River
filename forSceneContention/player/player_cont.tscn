@@ -110,6 +110,7 @@ remote_path = NodePath("../../SubViewportContainer/SubViewport/NoteCamera")
 [node name="Flashlight" parent="Head/Eyes/Camera3D" unique_id=994230874 instance=ExtResource("2_b3wke")]
 unique_name_in_owner = true
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -0.528, 0.057, -0.497)
+visible = false
 
 [node name="Arm" parent="Head/Eyes/Camera3D/Flashlight" unique_id=20820378 instance=ExtResource("3_dlcty")]
 unique_name_in_owner = true
@@ -177,9 +178,17 @@ script = ExtResource("4_b3wke")
 
 [node name="Control" type="Control" parent="GUI/ReticleLayer" unique_id=99048338]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="DefaultReticle" type="TextureRect" parent="GUI/ReticleLayer/Control" unique_id=2116180024]
 unique_name_in_owner = true
@@ -309,6 +318,7 @@ layer = 2
 
 [node name="pause_menu" parent="GUI" unique_id=738029466 instance=ExtResource("13_oeb7j")]
 unique_name_in_owner = true
+process_mode = 3
 layer = 3
 visible = false
 
@@ -354,5 +364,6 @@ volume_db = 10.0
 [connection signal="pressed" from="GUI/pause_menu/MainButtons/resume" to="GUI" method="_on_resume_pressed"]
 [connection signal="pressed" from="GUI/pause_menu/MainButtons/quit_game" to="GUI" method="_on_quit_game_pressed"]
 
+[editable path="Head/Eyes/Camera3D/Flashlight"]
 [editable path="GUI/pause_menu"]
 [editable path="InventoryController"]

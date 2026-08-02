@@ -50,6 +50,7 @@
 [ext_resource type="PackedScene" uid="uid://dabahesq1su04" path="res://Interaction/CollectableInteraction/InspectableInteraction/Interactables/text_note.tscn" id="49_w4b76"]
 [ext_resource type="PackedScene" uid="uid://b21p8xae1mmwn" path="res://forSceneContention/objects/table_reception.tscn" id="50_1aj00"]
 [ext_resource type="PackedScene" uid="uid://duocgenkgcftu" path="res://forSceneContention/objects/bebedouro.tscn" id="51_83t8d"]
+[ext_resource type="PackedScene" uid="uid://bxlgwph42nuql" path="res://Interaction/CollectableInteraction/InspectableInteraction/Interactables/archive_note.tscn" id="51_ht8op"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g27vq"]
 
@@ -1189,7 +1190,7 @@ transform = Transform3D(-8.742278e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.742278e-09
 [node name="Desktops_lamps" type="Node3D" parent="." unique_id=2084144336]
 
 [node name="desktop_lamp" parent="Desktops_lamps" unique_id=13314402 instance=ExtResource("5_nrrrp")]
-transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, -1.6398102, 0.1869517, 15.137282)
+transform = Transform3D(-0.17577009, 0, -0.09541947, 0, 0.2, 0, 0.09541947, 0, -0.17577009, -1.6398102, 0.1869517, 15.137282)
 
 [node name="desktop_lamp2" parent="Desktops_lamps" unique_id=245266366 instance=ExtResource("5_nrrrp")]
 transform = Transform3D(-0.15677598, -0.1197471, -0.03289246, -0.029531194, -0.015504226, 0.19719918, -0.12062003, 0.15943727, -0.005527919, 0.5175415, -0.053862736, 10.257562)
@@ -1317,12 +1318,6 @@ script = SubResource("GDScript_w4b76")
 [node name="dobra2" parent="Props/Doors" unique_id=229718352 instance=ExtResource("27_4wh2b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5902139, 0.2948179, 6.4051847)
 script = SubResource("GDScript_w4b76")
-
-[node name="Cube" parent="Props/Doors/dobra2/PivotPoint/StaticBody3D" parent_id_path=PackedInt32Array(229718352, 1195476425) index="0" unique_id=883100595]
-surface_material_override/0 = null
-
-[node name="Cube_001" parent="Props/Doors/dobra2/PivotPoint/StaticBody3D" parent_id_path=PackedInt32Array(229718352, 1195476425) index="1" unique_id=1443295595]
-surface_material_override/0 = null
 
 [node name="Sprite3D" type="Sprite3D" parent="Props/Doors/dobra2/PivotPoint" parent_id_path=PackedInt32Array(229718352, 451115422) index="1" unique_id=1749666226]
 transform = Transform3D(-0.04, 0, -6.0398317e-09, 0, 0.04, 0, 6.0398317e-09, 0, -0.04, -0.24476796, 0.18400845, -0.004743099)
@@ -1612,11 +1607,16 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, -0.06425953)
 [node name="Triggers" type="Node3D" parent="." unique_id=1684706603]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9693646, 0, -9.797571)
 
-[node name="TextNote" parent="." unique_id=10058687 instance=ExtResource("49_w4b76")]
-transform = Transform3D(-0.05915488, 0, 0.08062692, 0, 0.1, 0, -0.08062692, 0, -0.05915488, -2.5779748, 0.18351145, 5.4146914)
-
 [node name="Flashlight" parent="." unique_id=994230874 instance=ExtResource("8_twjvg")]
 transform = Transform3D(0.14959438, 0, 0.13274609, 0, 0.2, 0, -0.13274609, 0, 0.14959438, 1.0236865, -0.08840668, 11.794089)
+
+[node name="Notes" type="Node3D" parent="." unique_id=8573038]
+
+[node name="TextNote" parent="Notes" unique_id=10058687 instance=ExtResource("49_w4b76")]
+transform = Transform3D(-0.05915488, 0, 0.08062692, 0, 0.1, 0, -0.08062692, 0, -0.05915488, -2.5779748, 0.18351145, 5.4146914)
+
+[node name="ArchiveNote" parent="Notes" unique_id=694251035 instance=ExtResource("51_ht8op")]
+transform = Transform3D(0.032617863, 0, 0.09453081, 0, 0.1, 0, -0.09453081, 0, 0.032617863, -2.5608473, 0.18374033, 4.893118)
 
 [editable path="Props/desktop_lamp"]
 [editable path="Props/Doors/dobra2"]
