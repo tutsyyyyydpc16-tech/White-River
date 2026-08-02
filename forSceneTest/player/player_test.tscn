@@ -9,7 +9,7 @@
 [ext_resource type="Shader" uid="uid://r7p2cq0hsj5i" path="res://shader/pixel.gdshader" id="7_lgrp2"]
 [ext_resource type="Texture2D" uid="uid://b6w6wbtsa412s" path="res://stillImportant/point.png" id="8_ofa2r"]
 [ext_resource type="PackedScene" uid="uid://cxdesysowmxcw" path="res://stillImportant/task_ui.tscn" id="9_xuugf"]
-[ext_resource type="PackedScene" uid="uid://dr72kruha25gn" path="res://stillImportant/pause_menu.tscn" id="10_fk0n4"]
+[ext_resource type="PackedScene" uid="uid://dr72kruha25gn" path="res://menuScreen/pause_menu.tscn" id="10_fk0n4"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_kqu6x"]
 

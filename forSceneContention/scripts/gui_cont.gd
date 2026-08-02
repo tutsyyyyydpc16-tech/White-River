@@ -14,13 +14,15 @@ func _ready() -> void:
 	Global.task_atual = "Get the flashlight"
 	label.text = Global.task_atual
 	
-func resume_game():
-	get_tree().paused = false
-	pause_menu.visible = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	# Garante que os overlays visuais (CRT/Barrel/Pixel) nunca bloqueiem cliques do mouse
+	for shader_layer_name in ["CRT", "Barrel", "Pixel"]:
+		var shader_layer := get_node_or_null(shader_layer_name)
+		if shader_layer and shader_layer.has_node("ColorRect"):
+			shader_layer.get_node("ColorRect").mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
-func quit_game():
-	get_tree().quit()
+	# Aplica as configurações salvas (brilho e efeito VHS/CRT) assim que a cena carrega
+	SettingsManager.apply_scene_settings()
+
 	
 func set_task(body ,task_text: String):
 		$task_ui/task_text.text = task_text

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dr72kruha25gn"]
 
-[ext_resource type="Script" uid="uid://bpiiyybi47q7b" path="res://stillImportant/pause_menu.gd" id="1_hfvhq"]
+[ext_resource type="Script" uid="uid://bpiiyybi47q7b" path="res://menuScreen/pause_menu.gd" id="1_hfvhq"]
 
 [node name="pause_menu" type="CanvasLayer" unique_id=738029466]
 layer = 2
@@ -106,11 +106,11 @@ color = Color(0, 0, 0, 1)
 [node name="MusicSlider" type="HSlider" parent="SettingsPanel" unique_id=177906500]
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 0
-offset_left = 49.0
+offset_left = 47.0
 offset_top = 43.0
-offset_right = 249.0
+offset_right = 247.0
 offset_bottom = 83.0
-scale = Vector2(3, 3)
+scale = Vector2(2, 2)
 max_value = 2.0
 step = 0.1
 value = 0.5
@@ -122,6 +122,91 @@ offset_top = -12.666664
 offset_right = 56.0
 offset_bottom = 10.333336
 text = "Music"
+
+[node name="SoundSlider" type="HSlider" parent="SettingsPanel" unique_id=436438601]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 126.0
+offset_right = 249.33334
+offset_bottom = 153.0
+scale = Vector2(2, 2)
+max_value = 2.0
+step = 0.1
+value = 0.5
+
+[node name="Sound" type="Label" parent="SettingsPanel/SoundSlider" unique_id=1039455538]
+layout_mode = 0
+offset_left = 5.333334
+offset_top = -18.000004
+offset_right = 133.0
+offset_bottom = 4.999996
+text = "Sound"
+
+[node name="BrightnessSlider" type="HSlider" parent="SettingsPanel" unique_id=1229281185]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 174.0
+offset_right = 249.333
+offset_bottom = 217.0
+scale = Vector2(2, 2)
+max_value = 2.0
+step = 0.1
+
+[node name="Brightness" type="Label" parent="SettingsPanel/BrightnessSlider" unique_id=871294776]
+layout_mode = 0
+offset_top = -8.0
+offset_right = 83.0
+offset_bottom = 25.0
+text = "Brightness"
+
+[node name="FullScreenBox" type="CheckBox" parent="SettingsPanel" unique_id=1103940105]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 301.0
+offset_right = 66.0
+offset_bottom = 325.0
+scale = Vector2(2, 2)
+
+[node name="FullScreen" type="Label" parent="SettingsPanel/FullScreenBox" unique_id=854976708]
+layout_mode = 0
+offset_left = 5.333334
+offset_top = -17.666656
+offset_right = 133.0
+offset_bottom = 5.3333435
+text = "Full Screen"
+
+[node name="VHSScreenBox" type="CheckBox" parent="SettingsPanel" unique_id=312248017]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 368.0
+offset_right = 66.0
+offset_bottom = 392.0
+scale = Vector2(2, 2)
+button_pressed = true
+
+[node name="VHS Screen" type="Label" parent="SettingsPanel/VHSScreenBox" unique_id=1614888533]
+layout_mode = 0
+offset_left = 5.333334
+offset_top = -17.666656
+offset_right = 133.0
+offset_bottom = 5.3333435
+text = "VHS Screen"
+
+[node name="FogScreenBox" type="CheckBox" parent="SettingsPanel" unique_id=654229100]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 436.0
+offset_right = 66.0
+offset_bottom = 460.0
+scale = Vector2(2, 2)
+
+[node name="Fog Check" type="Label" parent="SettingsPanel/FogScreenBox" unique_id=2086911607]
+layout_mode = 0
+offset_left = 5.333334
+offset_top = -17.666656
+offset_right = 133.0
+offset_bottom = 5.3333435
+text = "Fog"
 
 [node name="BackButton" type="Button" parent="SettingsPanel" unique_id=1872945372]
 layout_mode = 0
@@ -138,58 +223,6 @@ scale = Vector2(2, 2)
 text = "Back"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="FullScreenBox" type="CheckBox" parent="SettingsPanel" unique_id=1103940105]
-layout_mode = 0
-offset_left = 42.0
-offset_top = 301.0
-offset_right = 66.0
-offset_bottom = 325.0
-scale = Vector2(3, 3)
-
-[node name="FullScreen" type="Label" parent="SettingsPanel/FullScreenBox" unique_id=854976708]
-layout_mode = 0
-offset_left = 5.333334
-offset_top = -17.666656
-offset_right = 133.0
-offset_bottom = 5.3333435
-text = "Full Screen"
-
-[node name="SoundSlider" type="HSlider" parent="SettingsPanel" unique_id=436438601]
-layout_mode = 0
-offset_left = 42.0
-offset_top = 188.00002
-offset_right = 244.33334
-offset_bottom = 212.00002
-scale = Vector2(3, 3)
-max_value = 2.0
-step = 0.1
-value = 0.5
-
-[node name="Sound" type="Label" parent="SettingsPanel/SoundSlider" unique_id=1039455538]
-layout_mode = 0
-offset_left = 5.333334
-offset_top = -18.000004
-offset_right = 133.0
-offset_bottom = 4.999996
-text = "Sound"
-
-[node name="BrigthnessSlider" type="HSlider" parent="SettingsPanel" unique_id=1229281185]
-layout_mode = 0
-offset_left = 49.0
-offset_top = 397.0
-offset_right = 266.0
-offset_bottom = 440.66666
-scale = Vector2(3, 3)
-max_value = 2.0
-step = 0.1
-
-[node name="Brigthness" type="Label" parent="SettingsPanel/BrigthnessSlider" unique_id=871294776]
-layout_mode = 0
-offset_top = -10.0
-offset_right = 83.0
-offset_bottom = 23.0
-text = "Brigthness"
 
 [node name="ControlsPanel" type="Panel" parent="." unique_id=2104685461]
 visible = false
@@ -263,13 +296,17 @@ text = "Back"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[connection signal="pressed" from="MainButtons/resume" to="." method="resume_game"]
 [connection signal="pressed" from="MainButtons/settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MainButtons/controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="MainButtons/main_menu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="MainButtons/quit_game" to="." method="quit_game"]
 [connection signal="value_changed" from="SettingsPanel/MusicSlider" to="." method="_on_volume_slider_value_changed"]
 [connection signal="value_changed" from="SettingsPanel/MusicSlider" to="." method="_on_music_slider_value_changed"]
-[connection signal="pressed" from="SettingsPanel/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="toggled" from="SettingsPanel/FullScreenBox" to="." method="_on_full_screen_box_toggled"]
 [connection signal="value_changed" from="SettingsPanel/SoundSlider" to="." method="_on_sound_slider_value_changed"]
-[connection signal="value_changed" from="SettingsPanel/BrigthnessSlider" to="." method="_on_brigthness_slider_value_changed"]
+[connection signal="value_changed" from="SettingsPanel/BrightnessSlider" to="." method="_on_brightness_slider_value_changed"]
+[connection signal="toggled" from="SettingsPanel/FullScreenBox" to="." method="_on_full_screen_box_toggled"]
+[connection signal="toggled" from="SettingsPanel/VHSScreenBox" to="." method="_on_vhs_check_box_toggled"]
+[connection signal="toggled" from="SettingsPanel/FogScreenBox" to="." method="_on_fog_check_box_toggled"]
+[connection signal="pressed" from="SettingsPanel/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="ControlsPanel/BackButton" to="." method="_on_back_button_pressed"]

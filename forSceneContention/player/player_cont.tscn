@@ -9,11 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://wnab6j34ggai" path="res://kenney_cursor-pixel-pack/Tiles/tile_0139.png" id="6_g8d17"]
 [ext_resource type="Texture2D" uid="uid://qcgkn7fwhybk" path="res://kenney_cursor-pixel-pack/Tiles/tile_0196.png" id="7_sm2yb"]
 [ext_resource type="Shader" uid="uid://dlecrsko0x5dd" path="res://shader/crt.gdshader" id="8_y3gst"]
-[ext_resource type="Shader" uid="uid://beilh4mdw0yrq" path="res://shader/barrel_distortion.gdshader" id="9_n72lg"]
 [ext_resource type="Shader" uid="uid://r7p2cq0hsj5i" path="res://shader/pixel.gdshader" id="10_webnn"]
 [ext_resource type="Shader" uid="uid://3bjo81fooaw4" path="res://shader/note_fade.gdshader" id="11_a8h34"]
 [ext_resource type="PackedScene" uid="uid://cxdesysowmxcw" path="res://stillImportant/task_ui.tscn" id="12_o7b6i"]
-[ext_resource type="PackedScene" uid="uid://dr72kruha25gn" path="res://stillImportant/pause_menu.tscn" id="13_oeb7j"]
+[ext_resource type="PackedScene" uid="uid://dr72kruha25gn" path="res://menuScreen/pause_menu.tscn" id="13_oeb7j"]
 [ext_resource type="PackedScene" uid="uid://bmuctybiuymyl" path="res://Interaction/interaction_controller.tscn" id="14_g85tn"]
 [ext_resource type="PackedScene" uid="uid://d0oktif46rl1t" path="res://Inventory/inventory_controller.tscn" id="15_r5acs"]
 [ext_resource type="AudioStream" uid="uid://db8r1hcqhg6bs" path="res://Sounds/assets_sound_effects_footstep05.ogg" id="16_k71k4"]
@@ -35,6 +34,16 @@ rings = 1
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qsqx2"]
 radius = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f4km0"]
+shader = ExtResource("10_webnn")
+shader_parameter/pixel_size = 4.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ioe7u"]
+shader = ExtResource("11_a8h34")
+shader_parameter/rect_width_px = 750.0
+shader_parameter/fade_width_px = 100.0
+shader_parameter/fade_strength = 0.750000035625
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sl5nf"]
 shader = ExtResource("8_y3gst")
@@ -59,21 +68,6 @@ shader_parameter/warp_amount = 0.50000002375
 shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.5
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_opky1"]
-shader = ExtResource("9_n72lg")
-shader_parameter/distortion_strength = 0.5
-shader_parameter/distortion_radius = 1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_f4km0"]
-shader = ExtResource("10_webnn")
-shader_parameter/pixel_size = 4.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ioe7u"]
-shader = ExtResource("11_a8h34")
-shader_parameter/rect_width_px = 750.0
-shader_parameter/fade_width_px = 100.0
-shader_parameter/fade_strength = 0.750000035625
 
 [node name="PlayerCont" type="CharacterBody3D" unique_id=6780333 groups=["player"]]
 script = ExtResource("1_i0ue1")
@@ -175,6 +169,7 @@ shape = SubResource("SphereShape3D_qsqx2")
 script = ExtResource("4_b3wke")
 
 [node name="ReticleLayer" type="CanvasLayer" parent="GUI" unique_id=317064602]
+layer = 2
 
 [node name="Control" type="Control" parent="GUI/ReticleLayer" unique_id=99048338]
 layout_mode = 3
@@ -192,9 +187,18 @@ grow_vertical = 2
 
 [node name="DefaultReticle" type="TextureRect" parent="GUI/ReticleLayer/Control" unique_id=2116180024]
 unique_name_in_owner = true
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 152.0
+offset_bottom = 152.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("4_woj1a")
 stretch_mode = 3
@@ -203,8 +207,8 @@ stretch_mode = 3
 unique_name_in_owner = true
 visible = false
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 400.0
+offset_bottom = 400.0
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_gg1u6")
 stretch_mode = 3
@@ -213,14 +217,15 @@ stretch_mode = 3
 unique_name_in_owner = true
 visible = false
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 400.0
+offset_bottom = 400.0
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("6_g8d17")
 stretch_mode = 3
 
 [node name="UseReticle" type="TextureRect" parent="GUI/ReticleLayer/Control" unique_id=1887842150]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -235,28 +240,6 @@ offset_top = 20.0
 offset_right = 60.0
 offset_bottom = 62.0
 theme_override_font_sizes/font_size = 30
-
-[node name="CRT" type="CanvasLayer" parent="GUI" unique_id=458235204]
-
-[node name="ColorRect" type="ColorRect" parent="GUI/CRT" unique_id=840531703]
-material = SubResource("ShaderMaterial_sl5nf")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Barrel" type="CanvasLayer" parent="GUI" unique_id=809228728]
-layer = 0
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="GUI/Barrel" unique_id=1546314538]
-material = SubResource("ShaderMaterial_opky1")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Pixel" type="CanvasLayer" parent="GUI" unique_id=1347256587]
 layer = 0
@@ -314,12 +297,30 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="task_ui" parent="GUI" unique_id=1227124689 instance=ExtResource("12_o7b6i")]
-layer = 2
+
+[node name="RichTextLabel" parent="GUI/task_ui" index="0" unique_id=580022140]
+offset_left = 872.0
+offset_top = -7.0
+offset_right = 993.66675
+offset_bottom = 162.0
+scale = Vector2(1.5, 1.5)
+
+[node name="task_text" parent="GUI/task_ui" index="1" unique_id=829243305]
+offset_left = -177.0
+offset_top = 33.0
+offset_right = 686.3334
+offset_bottom = 159.0
+scale = Vector2(1.5, 1.5)
+
+[node name="FPSLabel" parent="GUI/task_ui" index="2" unique_id=298143475]
+offset_left = 45.0
+offset_right = 86.333336
+scale = Vector2(1.5, 1.5)
 
 [node name="pause_menu" parent="GUI" unique_id=738029466 instance=ExtResource("13_oeb7j")]
 unique_name_in_owner = true
 process_mode = 3
-layer = 3
+layer = 1
 visible = false
 
 [node name="Mensage" type="CanvasLayer" parent="GUI" unique_id=1673992271]
@@ -339,6 +340,17 @@ theme_override_font_sizes/font_size = 47
 text = "What Happened?"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CRT" type="CanvasLayer" parent="GUI" unique_id=458235204]
+
+[node name="ColorRect" type="ColorRect" parent="GUI/CRT" unique_id=840531703]
+material = SubResource("ShaderMaterial_sl5nf")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="InteractionController" parent="." unique_id=2013384041 instance=ExtResource("14_g85tn")]
 unique_name_in_owner = true
@@ -361,9 +373,6 @@ unique_name_in_owner = true
 stream = ExtResource("17_rnqq5")
 volume_db = 10.0
 
-[connection signal="pressed" from="GUI/pause_menu/MainButtons/resume" to="GUI" method="_on_resume_pressed"]
-[connection signal="pressed" from="GUI/pause_menu/MainButtons/quit_game" to="GUI" method="_on_quit_game_pressed"]
-
 [editable path="Head/Eyes/Camera3D/Flashlight"]
-[editable path="GUI/pause_menu"]
+[editable path="GUI/task_ui"]
 [editable path="InventoryController"]

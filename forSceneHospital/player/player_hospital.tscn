@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://8rgo0lbkx107" path="res://trash/oldPaper.png" id="13_gbpnc"]
 [ext_resource type="FontFile" uid="uid://cn1ujhnngdflj" path="res://fonts/VanillaCreamOx-Regular.otf" id="14_m3rh4"]
 [ext_resource type="PackedScene" uid="uid://cxdesysowmxcw" path="res://stillImportant/task_ui.tscn" id="15_2qi1v"]
-[ext_resource type="PackedScene" uid="uid://dr72kruha25gn" path="res://stillImportant/pause_menu.tscn" id="16_r6y48"]
+[ext_resource type="PackedScene" uid="uid://dr72kruha25gn" path="res://menuScreen/pause_menu.tscn" id="16_r6y48"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_kqu6x"]
 
