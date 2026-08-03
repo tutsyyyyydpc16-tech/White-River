@@ -1,7 +1,7 @@
 extends Node
 
 func _on_play_pressed():
-	get_tree().change_scene_to_file("res://cutscene/cutscene_intro.tscn")
+	get_tree().change_scene_to_file("res://cutscene/scenes/cutscene_intro.tscn")
 	
 func _on_exit_pressed() -> void:
 	get_tree().quit()

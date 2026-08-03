@@ -2,6 +2,9 @@
 
 [ext_resource type="Material" uid="uid://dpm57ml74qrnd" path="res://colors/Vermelho.tres" id="1_f86yn"]
 [ext_resource type="Material" uid="uid://crta56vqur1vp" path="res://colors/Preto.tres" id="2_m8275"]
+[ext_resource type="Script" uid="uid://wbut10np25bi" path="res://Interaction/CollectableInteraction/EquippableImteraction/equippable_interaction.gd" id="3_vevbm"]
+[ext_resource type="Script" uid="uid://bqqbn3314tfw3" path="res://Inventory/Actions/equippable_action.gd" id="4_cruhr"]
+[ext_resource type="Script" uid="uid://bmuhy8m8g37oh" path="res://Inventory/item_data.gd" id="5_qh3xq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3n6ye"]
 
@@ -70,7 +73,20 @@ shadow_mesh = SubResource("ArrayMesh_d5qdw")
 [sub_resource type="BoxShape3D" id="BoxShape3D_20p0d"]
 size = Vector3(0.23754883, 0.88391113, 0.20159912)
 
-[node name="Screwdriver" type="Area3D" unique_id=182326404]
+[sub_resource type="Resource" id="Resource_cruhr"]
+script = ExtResource("4_cruhr")
+metadata/_custom_type_script = "uid://bqqbn3314tfw3"
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qh3xq"]
+
+[sub_resource type="Resource" id="Resource_0cerw"]
+script = ExtResource("5_qh3xq")
+item_name = "Screwdriver"
+item_icon = SubResource("PlaceholderTexture2D_qh3xq")
+action_data = SubResource("Resource_cruhr")
+metadata/_custom_type_script = "uid://bmuhy8m8g37oh"
+
+[node name="Screwdriver" type="StaticBody3D" unique_id=645853052]
 
 [node name="Cylinder" type="MeshInstance3D" parent="." unique_id=37409763]
 transform = Transform3D(0.102919705, 0, 0, 0, 0.19289151, 0, 0, 0, 0.102919705, 0, 0, 0)
@@ -85,3 +101,8 @@ surface_material_override/0 = ExtResource("2_m8275")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=670168793]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014526367, 0.13336182, -0.0061950684)
 shape = SubResource("BoxShape3D_20p0d")
+
+[node name="EquippableInteraction" type="Node" parent="." unique_id=1430278308]
+script = ExtResource("3_vevbm")
+item_data = SubResource("Resource_0cerw")
+metadata/_custom_type_script = "uid://wbut10np25bi"

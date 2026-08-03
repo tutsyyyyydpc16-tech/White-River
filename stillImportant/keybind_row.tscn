@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://q5613cajfibr"]
+
+[ext_resource type="Script" uid="uid://lhdj1qk4mdml" path="res://codes/keybind_row.gd" id="1_7bvcr"]
+
+[node name="KeybindRow" type="HBoxContainer" unique_id=1084806268]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7bvcr")
+
+[node name="ActionLabel" type="Label" parent="." unique_id=1734489386]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+
+[node name="RebindButton" type="Button" parent="." unique_id=2029048315]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "..."

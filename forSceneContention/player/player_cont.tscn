@@ -106,6 +106,12 @@ unique_name_in_owner = true
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -0.528, 0.057, -0.497)
 visible = false
 
+[node name="Cylinder" parent="Head/Eyes/Camera3D/Flashlight" index="0" unique_id=1936728168]
+surface_material_override/0 = null
+
+[node name="Cylinder_002" parent="Head/Eyes/Camera3D/Flashlight" index="1" unique_id=856101740]
+surface_material_override/0 = null
+
 [node name="Arm" parent="Head/Eyes/Camera3D/Flashlight" unique_id=20820378 instance=ExtResource("3_dlcty")]
 unique_name_in_owner = true
 transform = Transform3D(1.1621321, 0.37869447, 0.26180008, 0.46037894, -0.9559363, -0.6608608, -7.4505806e-08, 0.7108278, -1.0282139, -0.771533, -0.7559265, -0.031883717)
@@ -299,18 +305,16 @@ vertical_alignment = 1
 [node name="task_ui" parent="GUI" unique_id=1227124689 instance=ExtResource("12_o7b6i")]
 
 [node name="RichTextLabel" parent="GUI/task_ui" index="0" unique_id=580022140]
-offset_left = 872.0
+offset_left = 924.0
 offset_top = -7.0
-offset_right = 993.66675
+offset_right = 1117.0
 offset_bottom = 162.0
-scale = Vector2(1.5, 1.5)
 
 [node name="task_text" parent="GUI/task_ui" index="1" unique_id=829243305]
-offset_left = -177.0
-offset_top = 33.0
-offset_right = 686.3334
-offset_bottom = 159.0
-scale = Vector2(1.5, 1.5)
+offset_left = 541.0
+offset_top = 20.0
+offset_right = 1111.0
+offset_bottom = 105.0
 
 [node name="FPSLabel" parent="GUI/task_ui" index="2" unique_id=298143475]
 offset_left = 45.0
@@ -373,6 +377,10 @@ unique_name_in_owner = true
 stream = ExtResource("17_rnqq5")
 volume_db = 10.0
 
+[connection signal="pressed" from="GUI/pause_menu/MainButtons/resume" to="GUI/pause_menu" method="_on_resume_pressed"]
+[connection signal="pressed" from="GUI/pause_menu/MainButtons/quit_game" to="GUI/pause_menu" method="_on_quit_game_pressed"]
+
 [editable path="Head/Eyes/Camera3D/Flashlight"]
 [editable path="GUI/task_ui"]
+[editable path="GUI/pause_menu"]
 [editable path="InventoryController"]

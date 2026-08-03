@@ -1,4 +1,4 @@
-extends Area3D
+extends StaticBody3D
 
 func interagir():
 	Global.tem_screwdriver = true

@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://cv5or3cwmhjdx"]
+
+[node name="ControlsPanel" type="Panel" unique_id=2143355543]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=101948812]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label (Controls)" type="Label" parent="." unique_id=791664025]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -580.0
+offset_top = -300.0
+offset_right = -473.5
+offset_bottom = -275.75
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+text = "Controls"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label (Move)" type="Label" parent="." unique_id=1003896507]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 114.0
+offset_right = 530.0
+offset_bottom = 423.0
+scale = Vector2(1.5, 1.5)
+text = "W - Move Forward
+
+S - 	Move Backward
+
+A - Move Left
+
+D - Move Right
+
+E - Interact
+
+ESC - Pause
+"
+
+[node name="Button" type="Button" parent="." unique_id=645609422]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 115.0
+offset_right = 288.0
+offset_bottom = 123.0
+scale = Vector2(5, 5)
+
+[node name="Button2" type="Button" parent="." unique_id=377373142]
+layout_mode = 0
+offset_left = 292.00003
+offset_top = 191.00002
+offset_right = 300.00003
+offset_bottom = 199.00002
+scale = Vector2(5, 5)
+
+[node name="Button3" type="Button" parent="." unique_id=144032458]
+layout_mode = 0
+offset_left = 226.00003
+offset_top = 268.99997
+offset_right = 234.00003
+offset_bottom = 276.99997
+scale = Vector2(5, 5)
+
+[node name="Button4" type="Button" parent="." unique_id=2119117156]
+layout_mode = 0
+offset_left = 242.00003
+offset_top = 348.0
+offset_right = 250.00003
+offset_bottom = 356.0
+scale = Vector2(5, 5)
+
+[node name="Button5" type="Button" parent="." unique_id=761742183]
+layout_mode = 0
+offset_left = 197.00003
+offset_top = 427.00003
+offset_right = 205.00003
+offset_bottom = 435.00003
+scale = Vector2(5, 5)

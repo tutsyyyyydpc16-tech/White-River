@@ -20,4 +20,4 @@ func _input(event):
 	
 func pular_cutscene():
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://level/cena_contention.tscn")
+	get_tree().change_scene_to_file("res://forSceneContention/scenes/cena_contention.tscn")

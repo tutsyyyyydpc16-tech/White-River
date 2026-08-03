@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://dr72kruha25gn"]
 
 [ext_resource type="Script" uid="uid://bpiiyybi47q7b" path="res://menuScreen/pause_menu.gd" id="1_hfvhq"]
+[ext_resource type="Script" uid="uid://bbpj0x46hekpo" path="res://menuScreen/scripts/controls_panel.gd" id="2_88ick"]
+[ext_resource type="Theme" path="res://stillImportant/vhs_menu_theme.tres" id="2_h2kh0"]
+[ext_resource type="Theme" path="res://stillImportant/vhs_menu_theme_compact.tres" id="3_ywi4r"]
 
 [node name="pause_menu" type="CanvasLayer" unique_id=738029466]
 layer = 2
@@ -19,6 +22,7 @@ offset_right = 577.0
 offset_bottom = 316.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_h2kh0")
 
 [node name="ColorRect" type="ColorRect" parent="MainButtons" unique_id=1942311917]
 layout_mode = 0
@@ -93,6 +97,7 @@ text = "Quit
 visible = false
 offset_right = 1155.0
 offset_bottom = 645.0
+theme = ExtResource("3_ywi4r")
 
 [node name="ColorRect" type="ColorRect" parent="SettingsPanel" unique_id=949307226]
 layout_mode = 1
@@ -162,9 +167,9 @@ text = "Brightness"
 [node name="FullScreenBox" type="CheckBox" parent="SettingsPanel" unique_id=1103940105]
 layout_mode = 0
 offset_left = 42.0
-offset_top = 301.0
+offset_top = 267.0
 offset_right = 66.0
-offset_bottom = 325.0
+offset_bottom = 291.0
 scale = Vector2(2, 2)
 
 [node name="FullScreen" type="Label" parent="SettingsPanel/FullScreenBox" unique_id=854976708]
@@ -178,9 +183,9 @@ text = "Full Screen"
 [node name="VHSScreenBox" type="CheckBox" parent="SettingsPanel" unique_id=312248017]
 layout_mode = 0
 offset_left = 42.0
-offset_top = 368.0
+offset_top = 334.0
 offset_right = 66.0
-offset_bottom = 392.0
+offset_bottom = 358.0
 scale = Vector2(2, 2)
 button_pressed = true
 
@@ -195,9 +200,9 @@ text = "VHS Screen"
 [node name="FogScreenBox" type="CheckBox" parent="SettingsPanel" unique_id=654229100]
 layout_mode = 0
 offset_left = 42.0
-offset_top = 436.0
+offset_top = 402.0
 offset_right = 66.0
-offset_bottom = 460.0
+offset_bottom = 426.0
 scale = Vector2(2, 2)
 
 [node name="Fog Check" type="Label" parent="SettingsPanel/FogScreenBox" unique_id=2086911607]
@@ -224,6 +229,24 @@ text = "Back"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TaskScreenBox" type="CheckBox" parent="SettingsPanel" unique_id=1161474181]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 471.0
+offset_right = 66.0
+offset_bottom = 495.0
+scale = Vector2(2, 2)
+button_pressed = true
+text = "Show tasks"
+
+[node name="Task Check" type="Label" parent="SettingsPanel/TaskScreenBox" unique_id=1590355916]
+layout_mode = 0
+offset_left = 5.333334
+offset_top = -17.666656
+offset_right = 133.0
+offset_bottom = 5.3333435
+text = "Fog"
+
 [node name="ControlsPanel" type="Panel" parent="." unique_id=2104685461]
 visible = false
 anchors_preset = 15
@@ -231,6 +254,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_ywi4r")
+script = ExtResource("2_88ick")
 
 [node name="ColorRect" type="ColorRect" parent="ControlsPanel" unique_id=1858009131]
 layout_mode = 1
@@ -240,6 +265,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ControlsPanel" unique_id=995940999]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.11728395
+anchor_right = 0.034722224
+anchor_bottom = -0.012345679
+offset_left = 60.0
+offset_top = 170.0
+offset_right = 1090.0
+offset_bottom = 540.0
+metadata/_edit_use_anchors_ = true
+
+[node name="RowsContainer" type="VBoxContainer" parent="ControlsPanel/ScrollContainer" unique_id=673818326]
+layout_mode = 2
 
 [node name="Label (Controls)" type="Label" parent="ControlsPanel" unique_id=37301559]
 layout_mode = 1
@@ -260,6 +300,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label (Move)" type="Label" parent="ControlsPanel" unique_id=528709858]
+visible = false
 layout_mode = 0
 offset_left = 62.0
 offset_top = 114.0
@@ -309,4 +350,5 @@ vertical_alignment = 1
 [connection signal="toggled" from="SettingsPanel/VHSScreenBox" to="." method="_on_vhs_check_box_toggled"]
 [connection signal="toggled" from="SettingsPanel/FogScreenBox" to="." method="_on_fog_check_box_toggled"]
 [connection signal="pressed" from="SettingsPanel/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="toggled" from="SettingsPanel/TaskScreenBox" to="." method="_on_task_screen_box_toggled"]
 [connection signal="pressed" from="ControlsPanel/BackButton" to="." method="_on_back_button_pressed"]
