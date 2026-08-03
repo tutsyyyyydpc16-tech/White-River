@@ -4,9 +4,6 @@ extends Area3D
 @export var ponto_spawn: Node3D
 
 func interagir():
-	$AnimationPlayer.play("bang")
-	$Bang.play()
-	
 	Global.mensagem = "FUCK!"
 
 

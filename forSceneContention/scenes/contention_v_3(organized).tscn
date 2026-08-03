@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://d0itdhk7nwi10" path="res://Textura Cont/Parede_textura (2).png" id="7_ih07x"]
 [ext_resource type="PackedScene" uid="uid://xpa0xql5lb3o" path="res://forSceneContention/objects/flashlight.tscn" id="8_twjvg"]
 [ext_resource type="Texture2D" uid="uid://ht535b4qfqw5" path="res://Textura Cont/ChaoCont_Textura.png" id="10_ih07x"]
+[ext_resource type="PackedScene" uid="uid://t0l2hkio156j" path="res://enemies/body_v_3.tscn" id="12_7f7lf"]
 [ext_resource type="PackedScene" uid="uid://d1ex1xjcsu63x" path="res://forSceneContention/objects/caixa.tscn" id="13_we4o2"]
 [ext_resource type="PackedScene" uid="uid://cjvdcvb4wup2u" path="res://forSceneContention/objects/screwdriver.tscn" id="14_cqqwr"]
 [ext_resource type="PackedScene" uid="uid://do6ax8b4y0jjq" path="res://forSceneContention/objects/conjunto_caixas.tscn" id="14_gxn54"]
@@ -1187,6 +1188,9 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.6853125, 0.9349512, -
 
 [node name="lamp_contention15" parent="Luzes" unique_id=611064241 instance=ExtResource("4_nrrrp")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.19837, 0.9349512, -12.855021)
+
+[node name="bodyV3" parent="Luzes" unique_id=1025758809 instance=ExtResource("12_7f7lf")]
+transform = Transform3D(0.021697046, 0, -0.19881962, 0, 0.2, 0, 0.19881962, 0, 0.021697046, 0.72189045, 0.3740703, -4.200692)
 
 [node name="Desktops" type="Node3D" parent="." unique_id=404542231]
 

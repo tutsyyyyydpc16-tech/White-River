@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://c6euqhtu3h4hs" path="res://Sounds/BangPlayer.mp3" id="3_mb24n"]
 [ext_resource type="AudioStream" uid="uid://bonlund7u78q8" path="res://Sounds/SuperBangGlitch.mp3" id="4_nku2f"]
 [ext_resource type="AudioStream" uid="uid://b5qenb2xdcl67" path="res://Sounds/door_falling.wav" id="5_w43ih"]
+[ext_resource type="Script" uid="uid://dstvm68ou6omw" path="res://Interaction/RotatableInteraction/DoorInteraction/door_interaction.gd" id="6_6uat5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1tnta"]
 
@@ -212,6 +213,12 @@ stream = ExtResource("3_mb24n")
 
 [node name="Door_falling" type="AudioStreamPlayer3D" parent="Door_locked" unique_id=514286301]
 stream = ExtResource("5_w43ih")
+
+[node name="DoorInteraction" type="Node" parent="Door_locked" unique_id=1389404369 node_paths=PackedStringArray("pivot_point")]
+script = ExtResource("6_6uat5")
+pivot_point = NodePath("../..")
+is_locked = true
+metadata/_custom_type_script = "uid://dstvm68ou6omw"
 
 [node name="Glitch" type="AudioStreamPlayer3D" parent="." unique_id=1125846862]
 stream = ExtResource("4_nku2f")
