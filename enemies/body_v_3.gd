@@ -5,7 +5,7 @@ const SPEED_RUN = 4.0
 const ANGULO_VISAO = 60.0
 const ALCANCE_VISAO = 8.0
 const TEMPO_MEMORIA = 0.6
-const DISTANCIA_JUMPSCARE = 1.2  # o quão perto pra disparar o susto
+const DISTANCIA_JUMPSCARE = 2.3  # o quão perto pra disparar o susto
 
 var viu_player = false
 var memoria_timer = 0.0
@@ -23,8 +23,17 @@ func _ready():
 	_escolhe_novo_estado_patrulha()
 
 func _physics_process(delta):
+	
 	if jumpscare_ativado:
 		return  # trava tudo durante o susto
+
+	# Se o player ainda não foi encontrado (pode acontecer se o _ready() do
+	# inimigo rodar antes do _ready() do player marcar o grupo "player"),
+	# tenta achar de novo a cada frame até conseguir
+	if player == null:
+		player = get_tree().get_first_node_in_group("player")
+		if player == null:
+			return
 
 	if is_on_floor():
 		velocity.y = 0
@@ -40,11 +49,14 @@ func _physics_process(delta):
 		memoria_timer -= delta
 		viu_player = memoria_timer > 0.0
 
+	# Checagem de distância roda sempre, independente do raycast de visão ter passado
+	# nesse frame específico — contato físico direto sempre dispara o susto
+	var distancia_player = global_position.distance_to(player.global_position)
+	if distancia_player <= DISTANCIA_JUMPSCARE:
+		_disparar_jumpscare()
+		return
+
 	if viu_player:
-		var distancia = global_position.distance_to(player.global_position)
-		if distancia <= DISTANCIA_JUMPSCARE:
-			_disparar_jumpscare()
-			return
 		_perseguir(delta)
 	else:
 		_patrulhar(delta)
@@ -63,7 +75,7 @@ func _disparar_jumpscare():
 	anim.play("jumpscare")
 	await anim.animation_finished
 	
-	get_tree().change_scene_to_file("res://level/death_screen.tscn")
+	get_tree().change_scene_to_file("res://stillImportant/death_screen.tscn")
 
 func _consegue_ver_player() -> bool:
 	if player == null:
@@ -80,7 +92,7 @@ func _consegue_ver_player() -> bool:
 		return false
 	var space_state = get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.create(global_position + Vector3.UP, player.global_position + Vector3.UP)
-	query.exclude = [self]
+	query.exclude = [self, $Armature/Skeleton3D/Cube/StaticBody3D]
 	var result = space_state.intersect_ray(query)
 	if result and not result.collider.is_in_group("player"):
 		return false

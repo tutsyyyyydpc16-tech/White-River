@@ -13,7 +13,7 @@ var brightness: float = 1.0
 var vhs_enabled: bool = true
 var task_caption_enabled: bool = true
 
-## Mapa de rebind: nome da ação (String) -> InputEventKey
+## Mapa de rebind: nome da ação (String) -> InputEventKey ou InputEventMouseButton
 var keybinds: Dictionary = {}
 
 func _ready() -> void:
@@ -37,13 +37,27 @@ func load_settings() -> void:
 	vhs_enabled = config.get_value("display", "vhs_enabled", vhs_enabled)
 	task_caption_enabled = config.get_value("display", "task_caption_enabled", task_caption_enabled)
 
-	# Carrega os rebinds salvos (guardados como action -> physical_keycode, um int simples)
+	# Carrega os rebinds salvos (guardados como action -> {type, code})
 	var saved_keybinds: Dictionary = config.get_value("keybinds", "map", {})
 	keybinds.clear()
 	for action_name in saved_keybinds.keys():
-		var event := InputEventKey.new()
-		event.physical_keycode = saved_keybinds[action_name]
-		keybinds[action_name] = event
+		var raw = saved_keybinds[action_name]
+
+		if raw is Dictionary:
+			# Formato novo: {"type": "key"/"mouse", "code": int}
+			if raw.get("type") == "mouse":
+				var mouse_event := InputEventMouseButton.new()
+				mouse_event.button_index = raw.get("code")
+				keybinds[action_name] = mouse_event
+			else:
+				var key_event := InputEventKey.new()
+				key_event.physical_keycode = raw.get("code")
+				keybinds[action_name] = key_event
+		elif raw is int:
+			# Formato antigo (de antes de suportar mouse): era só um int de tecla
+			var key_event := InputEventKey.new()
+			key_event.physical_keycode = raw
+			keybinds[action_name] = key_event
 
 ## Salva as configurações atuais no disco
 func save_settings() -> void:
@@ -57,7 +71,11 @@ func save_settings() -> void:
 
 	var keybinds_to_save: Dictionary = {}
 	for action_name in keybinds.keys():
-		keybinds_to_save[action_name] = keybinds[action_name].physical_keycode
+		var event: InputEvent = keybinds[action_name]
+		if event is InputEventMouseButton:
+			keybinds_to_save[action_name] = {"type": "mouse", "code": event.button_index}
+		elif event is InputEventKey:
+			keybinds_to_save[action_name] = {"type": "key", "code": event.physical_keycode}
 	config.set_value("keybinds", "map", keybinds_to_save)
 
 	config.save(SETTINGS_PATH)
@@ -73,7 +91,7 @@ func _apply_audio() -> void:
 
 func _apply_fullscreen() -> void:
 	if fullscreen:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
@@ -141,18 +159,18 @@ func apply_keybinds() -> void:
 			InputMap.action_erase_events(action_name)
 			InputMap.action_add_event(action_name, keybinds[action_name])
 
-## Troca a tecla de uma ação específica, aplica na hora e já salva no disco
-func set_keybind(action_name: String, event: InputEventKey) -> void:
+## Troca a tecla/botão de uma ação específica, aplica na hora e já salva no disco
+func set_keybind(action_name: String, event: InputEvent) -> void:
 	keybinds[action_name] = event
 	if InputMap.has_action(action_name):
 		InputMap.action_erase_events(action_name)
 		InputMap.action_add_event(action_name, event)
 	save_settings()
 
-## Retorna o InputEventKey atualmente associado a uma ação, ou null se não tiver nenhuma tecla
-func get_keybind(action_name: String) -> InputEventKey:
+## Retorna o InputEvent (tecla ou mouse) atualmente associado a uma ação, ou null
+func get_keybind(action_name: String) -> InputEvent:
 	var events := InputMap.action_get_events(action_name)
 	for event in events:
-		if event is InputEventKey:
+		if event is InputEventKey or event is InputEventMouseButton:
 			return event
 	return null

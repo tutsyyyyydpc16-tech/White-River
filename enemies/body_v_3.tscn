@@ -573,6 +573,7 @@ _data = {
 height = 3.7167969
 
 [node name="bodyV3" type="CharacterBody3D" unique_id=1025758809]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 script = ExtResource("1_8oa37")
 
 [node name="Armature" type="Node3D" parent="." unique_id=2102314004]
@@ -726,7 +727,7 @@ collision_layer = 2
 shape = SubResource("ConcavePolygonShape3D_siqcv")
 
 [node name="Cube_001" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=63048259]
-transform = Transform3D(0.47537252, -1.6081915e-09, -0.0333388, -0.0013115713, 0.43142164, -0.015330837, 0.036798462, 0.015376758, 0.43013328, 0.14783268, 1.7069697, -0.022848891)
+transform = Transform3D(0.47537243, -1.6081911e-09, -0.0333388, -0.0013115711, 0.43142155, -0.015330837, 0.036798455, 0.015376755, 0.43013328, 0.14783268, 1.7069697, -0.022848891)
 mesh = SubResource("ArrayMesh_3vv4f")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=197105960]
@@ -749,8 +750,7 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -0.03148532, -0.23871386)
 target_position = Vector3(-2, 0, -5)
 
 [node name="JumpscareCamera" type="Camera3D" parent="." unique_id=612513056]
-transform = Transform3D(-0.9817436, -2.0489097e-08, -0.19020928, 0.028488955, 0.9887198, -0.1470425, 0.18806376, -0.14977694, -0.970669, -0.2010603, 0.49760962, -1.4673)
-current = true
+transform = Transform3D(-0.9817436, -2.0489097e-08, -0.19020925, 0.028488955, 0.9887198, -0.14704247, 0.18806376, -0.14977694, -0.9706688, -0.2010603, 0.49760962, -1.4673)
 
 [node name="Glitch" parent="." unique_id=127948724 instance=ExtResource("3_3vv4f")]
 transform = Transform3D(1, 0, 0, 0, 2.5, 0, 0, 0, 1, -0.2145772, -0.36821532, -0.025259733)

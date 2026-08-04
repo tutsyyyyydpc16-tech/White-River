@@ -36,6 +36,8 @@ folder_colors={
 "res://Interaction/GrabbableInteraction/": "green",
 "res://Interaction/RotatableInteraction/": "yellow",
 "res://Interaction/TypeableInteraction/": "orange",
+"res://Interaction/VentScrewInteraction/": "red",
+"res://Interaction/VentTrapDoorInteraction/": "gray",
 "res://Inventory/": "teal",
 "res://Inventory/Actions/": "blue",
 "res://Sounds/": "yellow",

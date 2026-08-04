@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dyxsb4qm8eoub"]
+
+[ext_resource type="Script" uid="uid://dwjorgo1ae17q" path="res://Interaction/VentScrewInteraction/vent_screw_interaction.gd" id="1_wo17g"]
+
+[node name="VentScrewInteraction" type="Node" unique_id=234117757]
+script = ExtResource("1_wo17g")

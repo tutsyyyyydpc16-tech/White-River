@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://twbfpdjgke2b"]
+
+[ext_resource type="Script" uid="uid://b1ocb8x8q5rgx" path="res://Interaction/VentTrapDoorInteraction/vent_trapdoor_interaction.gd" id="1_vrmmh"]
+
+[node name="VentTrapdoorInteraction" type="Node" unique_id=774127336]
+script = ExtResource("1_vrmmh")
+animation_player = NodePath("../AnimationPlayer")

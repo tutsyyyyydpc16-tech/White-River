@@ -347,6 +347,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CRT" type="CanvasLayer" parent="GUI" unique_id=458235204]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="GUI/CRT" unique_id=840531703]
 material = SubResource("ShaderMaterial_sl5nf")
