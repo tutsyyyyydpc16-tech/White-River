@@ -978,7 +978,7 @@ shape = SubResource("ConcavePolygonShape3D_lvfcy")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.087379664, 5.751924)
 
 [node name="Parafusos" parent="Estrutura/Trapdoor and Screw" unique_id=756234555 instance=ExtResource("8_w4b76")]
-transform = Transform3D(-0.202, 0, 7.866171e-08, 0, 0.202, 0, -7.866171e-08, 0, -0.202, 0, -0.0030358285, 0.011318326)
+transform = Transform3D(-0.202, 0, 7.866171e-08, 0, 0.202, 0, -7.866171e-08, 0, -0.202, 1.1540934, -0.0072875693, 0.21620607)
 
 [node name="Trapdoor" parent="Estrutura/Trapdoor and Screw" unique_id=115503100 instance=ExtResource("9_ht8op")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1659533, -0.006283015, 0.2004056)

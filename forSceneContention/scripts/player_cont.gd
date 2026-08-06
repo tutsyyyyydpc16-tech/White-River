@@ -5,6 +5,7 @@ extends CharacterBody3D
 @onready var camera_3d: Camera3D = $Head/Eyes/Camera3D
 @onready var standing_collision_shape: CollisionShape3D = $StandingCollisionShape
 @onready var crouching_collision_shape: CollisionShape3D = $CrouchingCollisionShape
+@onready var crawling_collision_shape: CollisionShape3D = $CrawlingCollisionShape
 @onready var stand_up_check: RayCast3D = $StandUpCheck
 @onready var interaction_controller: Node = %InteractionController
 @onready var footsteps_se: AudioStreamPlayer3D = %Footsteps
@@ -20,11 +21,13 @@ var note_sway_amount: float = 0.1
 const walking_speed: float = 3.0
 const sprinting_speed: float = 5.0
 const crouching_speed: float = 1.0
+const crawling_speed: float = 0.7
 var current_speed: float = 3.0
 var moving: bool = false
 var input_dir: Vector2 = Vector2.ZERO
 var direction: Vector3 = Vector3.ZERO
 const crouching_depth: float = 0.7
+const crawling_depth: float = 0.5
 const jump_velocity: float = 4.0
 var lerp_speed: float = 10.0
 var mouse_input: Vector2
@@ -43,8 +46,10 @@ var sensitivity_facing_in: bool = false
 enum PlayerState {
 	IDLE_STAND,
 	IDLE_CROUCH,
+	IDLE_CRAWL,
 	CROUCHING,
 	WALKING,
+	CRAWLING,
 	SPRINTING,
 	AIR
 }
@@ -54,9 +59,11 @@ var player_state: PlayerState = PlayerState.IDLE_STAND
 const head_bobbing_sprinting_speed: float = 22.0
 const head_bobbing_walking_speed: float = 14.0
 const head_bobbing_crouching_speed: float = 10.0
+const head_bobbing_crawling_speed: float = 10.0
 const head_bobbing_sprinting_intensity: float = 0.2
 const head_bobbing_walking_intensity: float = 0.1
 const head_bobbing_crouching_intensity: float = 0.05
+const head_bobbing_crawling_intensity: float = 0.5
 var head_bobbing_current_intesity: float = 0.0
 var head_bobbing_vector: Vector2 = Vector2.ZERO
 var head_bobbing_index: float = 0.0
@@ -176,32 +183,42 @@ func _process(delta: float) -> void:
 func updatePlayerState() -> void:
 	moving = (input_dir != Vector2.ZERO)
 	
-	if not is_on_floor():
+	if !is_on_floor():
 		player_state = PlayerState.AIR
+
+	elif Input.is_action_pressed("crawl"):
+		player_state = PlayerState.CRAWLING if moving else PlayerState.IDLE_CRAWL
+
+	elif Input.is_action_pressed("crouch"):
+		player_state = PlayerState.CROUCHING if moving else PlayerState.IDLE_CROUCH
+
+	elif Input.is_action_pressed("sprint") and moving:
+		player_state = PlayerState.SPRINTING
+
+	elif moving:
+		player_state = PlayerState.WALKING
+
 	else:
-		if Input.is_action_pressed("crouch"):
-			if not moving:
-				player_state = PlayerState.IDLE_CROUCH
-			else:
-				player_state = PlayerState.CROUCHING
-		elif !stand_up_check.is_colliding():
-			if not moving:
-				player_state = PlayerState.IDLE_STAND
-			elif Input.is_action_pressed("sprint"):
-				player_state = PlayerState.SPRINTING
-			else:
-				player_state = PlayerState.WALKING
+		player_state = PlayerState.IDLE_STAND
 			
 	updatePlayerColShape(player_state)
 	updatePlayerSpeed(player_state)
 	
 func updatePlayerColShape(_player_state: PlayerState) -> void:
-	if _player_state == PlayerState.CROUCHING or _player_state == PlayerState.IDLE_CROUCH:
-		standing_collision_shape.disabled = true
-		crouching_collision_shape.disabled = false
-	else:
-		standing_collision_shape.disabled = false
-		crouching_collision_shape.disabled = true
+	
+	standing_collision_shape.disabled = true
+	crouching_collision_shape.disabled = true
+	crawling_collision_shape.disabled = true
+	
+	match _player_state:
+		PlayerState.CROUCHING, PlayerState.IDLE_CROUCH:
+			crouching_collision_shape.disabled = false
+		
+		PlayerState.CRAWLING, PlayerState.IDLE_CRAWL:
+			crawling_collision_shape.disabled = false
+		
+		_:
+			standing_collision_shape.disabled = false
 	
 func updatePlayerSpeed(_player_state: PlayerState) -> void:
 	if _player_state == PlayerState.CROUCHING or _player_state == PlayerState.IDLE_CROUCH:
@@ -210,6 +227,10 @@ func updatePlayerSpeed(_player_state: PlayerState) -> void:
 		current_speed = walking_speed
 	elif _player_state == PlayerState.SPRINTING:
 		current_speed = sprinting_speed
+	elif _player_state == PlayerState.CRAWLING or _player_state == PlayerState.IDLE_CRAWL:
+		current_speed = crawling_speed
+		
+	print(player_state)
 		
 	
 func updateCamera(delta: float) -> void:
@@ -221,6 +242,11 @@ func updateCamera(delta: float) -> void:
 		camera_3d.fov = lerp(camera_3d.fov, base_fov * 0.95, delta * lerp_speed)
 		head_bobbing_current_intesity = head_bobbing_crouching_intensity
 		head_bobbing_index += head_bobbing_crouching_speed * delta
+	elif player_state == PlayerState.CRAWLING or player_state == PlayerState.IDLE_CRAWL:
+		head.position.y = lerp(head.position.y, 1.8 * crawling_depth, delta * lerp_speed)
+		camera_3d.fov = lerp(camera_3d.fov, base_fov * 0.75, delta * lerp_speed)
+		head_bobbing_current_intesity = head_bobbing_crawling_intensity
+		head_bobbing_index += head_bobbing_crawling_speed * delta
 	elif player_state == PlayerState.IDLE_STAND:
 		head.position.y = lerp(head.position.y, 1.8, delta * lerp_speed)
 		camera_3d.fov = lerp(camera_3d.fov, base_fov, delta * lerp_speed)

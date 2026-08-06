@@ -23,6 +23,10 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hl0u3"]
 height = 1.0
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_btqtt"]
+radius = 0.2446289
+height = 1.5
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7tyjg"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_3arxy"]
@@ -75,10 +79,17 @@ script = ExtResource("1_i0ue1")
 [node name="StandingCollisionShape" type="CollisionShape3D" parent="." unique_id=1904698703]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_h1eem")
+debug_color = Color(0, 0.85000014, 1, 1)
 
 [node name="CrouchingCollisionShape" type="CollisionShape3D" parent="." unique_id=570546244]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_hl0u3")
+debug_color = Color(1, 0, 0.016666412, 1)
+
+[node name="CrawlingCollisionShape" type="CollisionShape3D" parent="." unique_id=785219468]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.24751061, 0.25048202)
+shape = SubResource("CapsuleShape3D_btqtt")
+debug_color = Color(0, 1, 0.20000005, 1)
 
 [node name="Head" type="Node3D" parent="." unique_id=2055850100]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
