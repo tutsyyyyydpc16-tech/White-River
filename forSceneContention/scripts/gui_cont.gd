@@ -6,6 +6,11 @@ extends  Node
 
 var mostrando_mensagem = false
 
+# Ignora o input de "pause" por um instante logo que a cena carrega, pra não pegar
+# um evento de tecla "sobrando" da troca de cena anterior (ex: clicar Play no menu
+# principal), que às vezes causava uma pausa/despausa fantasma escondendo o reticle
+var pronto_para_pause: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
@@ -13,6 +18,11 @@ func _ready() -> void:
 	pause_menu.visible = false
 	Global.task_atual = "Get the flashlight"
 	label.text = Global.task_atual
+	
+	# Garantia extra: força o reticle visível no início, independente de
+	# qualquer corrida de eventos que possa ter mexido nele antes disso
+	if has_node("%DefaultReticle"):
+		%DefaultReticle.get_parent().visible = true
 	
 	# Garante que os overlays visuais (CRT/Barrel/Pixel) nunca bloqueiem cliques do mouse,
 	# já que eles são só efeito visual e não deveriam interceptar input nenhum
@@ -23,6 +33,11 @@ func _ready() -> void:
 	
 	# Aplica as configurações salvas (brilho e efeito VHS/CRT) assim que a cena carrega
 	SettingsManager.apply_scene_settings()
+	
+	# Espera alguns frames antes de aceitar input de pause, pra deixar qualquer
+	# evento "fantasma" da troca de cena se dissipar primeiro
+	await get_tree().create_timer(0.3).timeout
+	pronto_para_pause = true
 
 ## Centraliza toda a lógica de pausar/despausar num único lugar, pra não
 ## repetir (e desincronizar) a mesma lógica em 3 funções diferentes
@@ -55,7 +70,7 @@ func _process(delta: float) -> void:
 		mostrar_mensagem(Global.mensagem)
 		Global.mensagem = ""
 		
-	if Input.is_action_just_pressed("pause"):
+	if pronto_para_pause and Input.is_action_just_pressed("pause"):
 		_set_paused(not pause_menu.visible)
 		
 func atualizar_task():
