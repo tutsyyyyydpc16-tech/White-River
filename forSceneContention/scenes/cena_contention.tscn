@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://2vxxvccce1di"]
 
 [ext_resource type="PackedScene" uid="uid://cixrro7dl4udr" path="res://forSceneContention/scenes/contention_v_3(organized).tscn" id="1_pyp8s"]
-[ext_resource type="Environment" uid="uid://b7iv02a4c27bm" path="res://env/ambiente_escuro.tres" id="2_gfxq0"]
+[ext_resource type="Environment" uid="uid://dv045sagqo4ws" path="res://env/env_contention.tres" id="2_pyp8s"]
 [ext_resource type="Script" uid="uid://chcubxhgxlqlp" path="res://forSceneContention/scripts/ativarGlitch.gd" id="3_hgr25"]
 [ext_resource type="AudioStream" uid="uid://bonlund7u78q8" path="res://Sounds/SuperBangGlitch.mp3" id="4_jgg34"]
 [ext_resource type="Script" uid="uid://cqkplwivdgn6f" path="res://forSceneStreet/scripts/exit.gd" id="5_3xkft"]
@@ -16,7 +16,7 @@ size = Vector3(3.0360718, 3.1982422, 1.5411377)
 transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 0, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=253379498]
-environment = ExtResource("2_gfxq0")
+environment = ExtResource("2_pyp8s")
 
 [node name="Triggers" type="Node3D" parent="." unique_id=168431471]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.976605, 0, -13.306616)

@@ -12,7 +12,7 @@
 [ext_resource type="Shader" uid="uid://r7p2cq0hsj5i" path="res://shader/pixel.gdshader" id="10_webnn"]
 [ext_resource type="Shader" uid="uid://3bjo81fooaw4" path="res://shader/note_fade.gdshader" id="11_a8h34"]
 [ext_resource type="PackedScene" uid="uid://cxdesysowmxcw" path="res://stillImportant/task_ui.tscn" id="12_o7b6i"]
-[ext_resource type="PackedScene" uid="uid://dr72kruha25gn" path="res://menuScreen/pause_menu.tscn" id="13_oeb7j"]
+[ext_resource type="PackedScene" uid="uid://d0kstfbal46u6" path="res://menuScreen/pause_menu.tscn" id="13_oeb7j"]
 [ext_resource type="PackedScene" uid="uid://bmuctybiuymyl" path="res://Interaction/interaction_controller.tscn" id="14_g85tn"]
 [ext_resource type="PackedScene" uid="uid://d0oktif46rl1t" path="res://Inventory/inventory_controller.tscn" id="15_r5acs"]
 [ext_resource type="AudioStream" uid="uid://db8r1hcqhg6bs" path="res://Sounds/assets_sound_effects_footstep05.ogg" id="16_k71k4"]

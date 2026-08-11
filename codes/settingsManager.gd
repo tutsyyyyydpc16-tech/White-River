@@ -33,7 +33,7 @@ func load_settings() -> void:
 	music_volume = config.get_value("audio", "music_volume", music_volume)
 	sound_volume = config.get_value("audio", "sound_volume", sound_volume)
 	fullscreen = config.get_value("display", "fullscreen", fullscreen)
-	brightness = config.get_value("display", "brightness", brightness)
+	brightness = clamp(config.get_value("display", "brightness", brightness), 0.0, 2.0)
 	vhs_enabled = config.get_value("display", "vhs_enabled", vhs_enabled)
 	task_caption_enabled = config.get_value("display", "task_caption_enabled", task_caption_enabled)
 
@@ -107,7 +107,7 @@ func apply_scene_settings() -> void:
 		var world_env: WorldEnvironment = scene.get_node("WorldEnvironment")
 		if world_env.environment:
 			world_env.environment.adjustment_enabled = true
-			world_env.environment.adjustment_brightness = brightness
+			world_env.environment.adjustment_brightness = clamp(brightness, 0.0, 2.0)
 
 	# Procura os canvas layers do efeito VHS/CRT em qualquer lugar da cena atual
 	# (eles vivem dentro do node "GUI" de cada cena de player)
@@ -136,7 +136,7 @@ func set_fullscreen(value: bool) -> void:
 	save_settings()
 
 func set_brightness(value: float) -> void:
-	brightness = value
+	brightness = clamp(value, 0.0, 2.0)
 	apply_scene_settings()
 	save_settings()
 

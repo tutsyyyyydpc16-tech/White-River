@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://dr72kruha25gn"]
+[gd_scene format=3 uid="uid://d0kstfbal46u6"]
 
 [ext_resource type="Script" uid="uid://bpiiyybi47q7b" path="res://menuScreen/pause_menu.gd" id="1_hfvhq"]
 [ext_resource type="Script" uid="uid://bbpj0x46hekpo" path="res://menuScreen/scripts/controls_panel.gd" id="2_88ick"]
-[ext_resource type="Theme" path="res://stillImportant/vhs_menu_theme.tres" id="2_h2kh0"]
-[ext_resource type="Theme" path="res://stillImportant/vhs_menu_theme_compact.tres" id="3_ywi4r"]
+[ext_resource type="Theme" uid="uid://tvfgxgvvidln" path="res://stillImportant/vhs_menu_theme.tres" id="2_h2kh0"]
+[ext_resource type="Theme" uid="uid://bou80eqvp1ig7" path="res://stillImportant/vhs_menu_theme_compact.tres" id="3_ywi4r"]
 
 [node name="pause_menu" type="CanvasLayer" unique_id=738029466]
 layer = 2
@@ -156,6 +156,7 @@ offset_bottom = 217.0
 scale = Vector2(2, 2)
 max_value = 2.0
 step = 0.1
+value = 1.0
 
 [node name="Brightness" type="Label" parent="SettingsPanel/BrightnessSlider" unique_id=871294776]
 layout_mode = 0
