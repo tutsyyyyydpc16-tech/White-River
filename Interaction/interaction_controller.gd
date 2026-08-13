@@ -449,3 +449,4 @@ func _make_meshes_unshaded(meshes: Array[MeshInstance3D]) -> void:
 				var unshaded_material: BaseMaterial3D = original_material.duplicate()
 				unshaded_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 				mesh.set_surface_override_material(surface_idx, unshaded_material)
+
