@@ -124,6 +124,10 @@ surface_material_override/0 = null
 [node name="Cylinder_002" parent="Head/Eyes/Camera3D/Flashlight" index="1" unique_id=856101740]
 surface_material_override/0 = null
 
+[node name="SpotLight3D" parent="Head/Eyes/Camera3D/Flashlight" index="3" unique_id=1880873724]
+light_energy = 3.5
+spot_range = 3.5
+
 [node name="Arm" parent="Head/Eyes/Camera3D/Flashlight" unique_id=20820378 instance=ExtResource("3_dlcty")]
 unique_name_in_owner = true
 transform = Transform3D(1.1621321, 0.37869447, 0.26180008, 0.46037894, -0.9559363, -0.6608608, -7.4505806e-08, 0.7108278, -1.0282139, -0.771533, -0.7559265, -0.031883717)

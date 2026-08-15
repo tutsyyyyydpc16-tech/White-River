@@ -18,6 +18,11 @@ signal item_collected(item: Node)
 
 @export var is_flashlight: bool = false
 
+## Rotação (em graus) aplicada ao item quando ele fica na mão do player.
+## Cada modelo pode ter uma orientação de origem diferente, então ajuste esse
+## valor no editor pra cada item até ele ficar virado do jeito certo na mão.
+@export var hand_rotation: Vector3 = Vector3(0, 180, -90)
+
 ## Runs once, after the node and all its children have entered the scene tree and are ready
 func _ready() -> void:
 	super()
@@ -49,4 +54,3 @@ func aux_interact() -> void:
 ## Runs once, when the player LAST interacts with an object
 func post_interact() -> void:
 	super()
-	

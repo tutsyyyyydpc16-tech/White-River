@@ -247,14 +247,12 @@ func _on_item_collected(item: Node3D) -> void:
 	
 ## Equips an object in the players hannd
 func on_item_equipped(item: Node3D):
-	# Set the equipped item and update flag
-	equipped_item = item
-	item_equipped = true
-	
 	# Cache the interaction component for this item
-	equipped_item_interaction_component = find_interaction_component(equipped_item)
+	equipped_item_interaction_component = find_interaction_component(item)
 	
 	if equipped_item_interaction_component is EquippableInteraction and equipped_item_interaction_component.is_flashlight:
+		# A lanterna usa seu próprio estado (flashlight_equipped), separado do slot
+		# geral (item_equipped) — assim ela não bloqueia equipar outras ferramentas
 		flashlight_equipped = true
 		flashlight_arm.visible = true
 		flashlight_model.visible = true
@@ -270,8 +268,8 @@ func on_item_equipped(item: Node3D):
 		return
 
 	# --- fluxo normal pra qualquer outro item equipável ---
-	flashlight_equipped = false
-	flashlight_arm.visible = false
+	equipped_item = item
+	item_equipped = true
 	
 	# Rigid bodies behave strangely when equipped.
 	if item is RigidBody3D:
@@ -291,10 +289,15 @@ func on_item_equipped(item: Node3D):
 	# Remove collision shapes so the note doesnt push on player or other physics objects
 	_remove_collision_shapes(equipped_item_interaction_component.collision_shapes)
 	
-	# Set the items's transform/rotation
+	# Set the items's transform/rotation. Cada item pode definir sua própria rotação
+	# de mão (hand_rotation) na EquippableInteraction, já que modelos diferentes têm
+	# orientações de origem diferentes — sem isso, todos usavam a mesma rotação fixa
 	item.transform.origin = item_hand.transform.origin
 	item.position = Vector3(0.0,0.0,0.0)
-	item.rotation_degrees = Vector3(0,180,-90)
+	if equipped_item_interaction_component.has_method("get") and "hand_rotation" in equipped_item_interaction_component:
+		item.rotation_degrees = equipped_item_interaction_component.hand_rotation
+	else:
+		item.rotation_degrees = Vector3(0,180,-90)
 	
 	# Play sound effect
 	equip_item_player.play()
@@ -312,7 +315,6 @@ func _use_equipped_item() -> void:
 				equipped_item.queue_free()
 				equipped_item = null
 				item_equipped = false
-				_unequip_flashlight()
 			# Play a sound effect and inform the player via text that the item was successfully used
 			interact_success_player.play()
 			return
@@ -331,7 +333,6 @@ func _use_equipped_item() -> void:
 	item_equipped = false
 	current_object = null
 	potential_interaction_component = null
-	_unequip_flashlight()
 	
 ## Hides the camera-mounted flashlight arm/light decoration when the flashlight is no longer equipped
 func _unequip_flashlight() -> void:
@@ -449,4 +450,3 @@ func _make_meshes_unshaded(meshes: Array[MeshInstance3D]) -> void:
 				var unshaded_material: BaseMaterial3D = original_material.duplicate()
 				unshaded_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 				mesh.set_surface_override_material(surface_idx, unshaded_material)
-
