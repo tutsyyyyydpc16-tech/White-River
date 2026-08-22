@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://cndss7hkttojj"]
 
 [ext_resource type="Script" uid="uid://qnqnmub6jl8o" path="res://stillImportant/door_locked.gd" id="1_06fj6"]
+[ext_resource type="PackedScene" uid="uid://t0l2hkio156j" path="res://enemies/body_v_3.tscn" id="2_lwv6q"]
 [ext_resource type="Texture2D" uid="uid://gsaeuj73xfd4" path="res://Textura Cont/Porta_Textura.png" id="2_mb24n"]
 [ext_resource type="Material" uid="uid://crta56vqur1vp" path="res://colors/Preto.tres" id="2_nku2f"]
 [ext_resource type="AudioStream" uid="uid://c6euqhtu3h4hs" path="res://Sounds/BangPlayer.mp3" id="3_mb24n"]
@@ -182,6 +183,7 @@ _data = {
 [node name="Door_locked" type="Area3D" parent="." unique_id=1464769136]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24184924, 0.01916939, 6.67572e-06)
 script = ExtResource("1_06fj6")
+inimigo_cena = ExtResource("2_lwv6q")
 
 [node name="Node3D" type="Node3D" parent="Door_locked" unique_id=1893962383]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24184924, -0.4463101, -6.67572e-06)
@@ -219,6 +221,9 @@ script = ExtResource("6_6uat5")
 pivot_point = NodePath("../..")
 is_locked = true
 metadata/_custom_type_script = "uid://dstvm68ou6omw"
+
+[node name="Marker3D" type="Marker3D" parent="Door_locked" unique_id=456101171]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
 [node name="Glitch" type="AudioStreamPlayer3D" parent="." unique_id=1125846862]
 stream = ExtResource("4_nku2f")

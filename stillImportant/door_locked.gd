@@ -27,6 +27,10 @@ func _spawnar_inimigo():
 		push_warning("Nenhuma cena de inimigo foi atribuída no Inspetor!")
 		return
 
+	# Usa o ponto_spawn definido manualmente no Inspector, ou cai pro
+	# SpawnPoint (Marker3D) que já vem dentro dessa cena, como padrão
+	var spawn_target: Node3D = ponto_spawn if ponto_spawn else get_node_or_null("SpawnPoint")
+
 	var inimigo = inimigo_cena.instantiate()
 	get_tree().current_scene.add_child(inimigo)
-	inimigo.global_position = ponto_spawn.global_position if ponto_spawn else global_position
+	inimigo.global_position = spawn_target.global_position if spawn_target else global_position
