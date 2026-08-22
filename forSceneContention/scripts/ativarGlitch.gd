@@ -19,3 +19,8 @@ func _on_musica_finished():
 		porta.glitch()
 	else:
 		push_warning("ativarGlitch: não encontrei a Porta_trancada pra disparar a sequência")
+	var cop = get_tree().current_scene.get_node_or_null("contentionV3(organized)/Bodies/CopSitting")
+	if cop:
+		cop.queue_free()
+	else:
+		push_warning("ativarGlitch: não encontrei o CopSitting pra remover")

@@ -2,8 +2,9 @@
 
 [resource]
 background_mode = 1
-background_color = Color(0.07762883, 0.07762881, 0.07762881, 1)
-ambient_light_energy = 0.15
+background_color = Color(0.16924527, 0.1692453, 0.1692453, 1)
+ambient_light_color = Color(0.07683582, 0.07683582, 0.07683582, 1)
+ambient_light_energy = 0.25
 tonemap_mode = 3
 fog_enabled = true
 fog_mode = 1

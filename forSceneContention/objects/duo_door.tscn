@@ -37,6 +37,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_rcguu")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1xv7a"]
+albedo_color = Color(0.06282361, 0.18912768, 1.2032688e-08, 1)
 albedo_texture = ExtResource("2_kn4lk")
 uv1_scale = Vector3(8, 8, 8)
 
@@ -79,6 +80,7 @@ shadow_mesh = SubResource("ArrayMesh_5r2hx")
 size = Vector3(0.94311523, 0.84936523, 0.26159668)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_67528"]
+albedo_color = Color(0.0627451, 0.1882353, 0, 1)
 albedo_texture = ExtResource("2_kn4lk")
 uv1_scale = Vector3(8, 8, 8)
 
