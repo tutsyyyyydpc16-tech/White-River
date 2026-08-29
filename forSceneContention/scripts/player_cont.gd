@@ -230,7 +230,6 @@ func updatePlayerSpeed(_player_state: PlayerState) -> void:
 	elif _player_state == PlayerState.CRAWLING or _player_state == PlayerState.IDLE_CRAWL:
 		current_speed = crawling_speed
 		
-	print(player_state)
 		
 	
 func updateCamera(delta: float) -> void:

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://b2exgvssb8jle"]
 
 [ext_resource type="Material" uid="uid://cktphifvg63k" path="res://colors/Cinza.tres" id="1_43dvu"]
-[ext_resource type="PackedScene" uid="uid://6ft1qa1llpfb" path="res://forSceneTest/player/player_test.tscn" id="1_kbjc3"]
 [ext_resource type="PackedScene" uid="uid://t0l2hkio156j" path="res://enemies/body_v_3.tscn" id="3_5b5qd"]
+[ext_resource type="PackedScene" uid="uid://cf00b3tqj20rj" path="res://forSceneTest/player/player_sand_box.tscn" id="3_qislo"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_43dvu"]
 
@@ -35,11 +35,11 @@ shape = SubResource("ConcavePolygonShape3D_n64p3")
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="MeshInstance3D" unique_id=953893868]
 navigation_mesh = SubResource("NavigationMesh_5b5qd")
 
-[node name="player_contention" parent="." unique_id=186006650 instance=ExtResource("1_kbjc3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.97508144, 12.354286)
-
 [node name="bodyV3" parent="." unique_id=1114346659 instance=ExtResource("3_5b5qd")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.2246225, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2100514379]
 environment = SubResource("Environment_pr7p2")
+
+[node name="PlayerSandBox" parent="." unique_id=6780333 instance=ExtResource("3_qislo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.32434988, 0, 14.721025)

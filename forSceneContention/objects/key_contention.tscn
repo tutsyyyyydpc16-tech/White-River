@@ -56,16 +56,16 @@ item_icon = SubResource("PlaceholderTexture2D_cg280")
 action_data = SubResource("Resource_gyct4")
 metadata/_custom_type_script = "uid://bmuhy8m8g37oh"
 
-[node name="key_contention" type="StaticBody3D" unique_id=1495557332]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+[node name="key_contention" type="RigidBody3D" unique_id=1838629445]
+freeze = true
 
 [node name="KeyMeshInstance3D" type="MeshInstance3D" parent="." unique_id=2032075879]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
 mesh = SubResource("ArrayMesh_8gts1")
 surface_material_override/0 = SubResource("StandardMaterial3D_ph34i")
 
 [node name="KeyCollisionShape3D" type="CollisionShape3D" parent="." unique_id=655637867]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.031494126, 0, -0.35125732)
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0.031, 0, 0)
 shape = SubResource("BoxShape3D_rsrsk")
 
 [node name="EquippableInteraction" type="Node" parent="." unique_id=2091831245]

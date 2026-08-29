@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://t0l2hkio156j"]
 
 [ext_resource type="Script" uid="uid://dh3umdj13dbld" path="res://enemies/body_v_3.gd" id="1_8oa37"]
+[ext_resource type="PackedScene" uid="uid://c8efd6k4b4efp" path="res://forSceneContention/objects/key_contention.tscn" id="2_0an1n"]
 [ext_resource type="ArrayMesh" uid="uid://2qbkouljiovf" path="res://enemies/CopCont_Mesh.tres" id="2_61tj0"]
 [ext_resource type="PackedScene" uid="uid://cat2wk4tv0lcl" path="res://glitch/glitch.tscn" id="3_3vv4f"]
 
@@ -714,6 +715,14 @@ bones/18/position = Vector3(0, 0, 0)
 bones/18/rotation = Quaternion(-0.70710677, 0, 0, 0.70710677)
 bones/18/scale = Vector3(1, 1, 1)
 
+[node name="KeyAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" unique_id=493506895]
+transform = Transform3D(0.041162807, -0.11174931, -0.9928834, -0.0046288036, -0.9937364, 0.111653395, -0.99914163, -5.5879354e-08, -0.04142224, -0.2252594, 0.016683698, 0.050702244)
+bone_name = "Bone_R.005"
+bone_idx = 15
+
+[node name="key_contention" parent="Armature/Skeleton3D/KeyAttachment3D" unique_id=1495557332 instance=ExtResource("2_0an1n")]
+transform = Transform3D(-0.99084306, 0.082276225, 0.10705369, -0.11558315, -0.10705369, -0.98751205, -0.06978822, -0.9908431, 0.11558315, -0.0070164576, -0.10144359, 0.16924381)
+
 [node name="Cube" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=849662075]
 mesh = ExtResource("2_61tj0")
 skin = SubResource("Skin_1gdej")
@@ -727,7 +736,7 @@ collision_layer = 2
 shape = SubResource("ConcavePolygonShape3D_siqcv")
 
 [node name="Cube_001" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=63048259]
-transform = Transform3D(0.47537243, -1.6081911e-09, -0.0333388, -0.0013115711, 0.43142155, -0.015330837, 0.036798455, 0.015376755, 0.43013328, 0.14783268, 1.7069697, -0.022848891)
+transform = Transform3D(0.4753723, -1.608191e-09, -0.0333388, -0.0013115708, 0.43142152, -0.015330837, 0.036798444, 0.015376754, 0.43013328, 0.14783268, 1.7069697, -0.022848891)
 mesh = SubResource("ArrayMesh_3vv4f")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=197105960]
@@ -750,7 +759,7 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -0.03148532, -0.23871386)
 target_position = Vector3(-2, 0, -5)
 
 [node name="JumpscareCamera" type="Camera3D" parent="." unique_id=612513056]
-transform = Transform3D(-0.9817436, -2.0489097e-08, -0.19020925, 0.028488955, 0.9887198, -0.14704247, 0.18806376, -0.14977694, -0.9706688, -0.2010603, 0.49760962, -1.4673)
+transform = Transform3D(-0.9817436, -2.0489097e-08, -0.19020922, 0.028488955, 0.9887198, -0.14704245, 0.18806376, -0.14977694, -0.9706687, -0.2010603, 0.49760962, -1.4673)
 
 [node name="Glitch" parent="." unique_id=127948724 instance=ExtResource("3_3vv4f")]
 transform = Transform3D(1, 0, 0, 0, 2.5, 0, 0, 0, 1, -0.2145772, -0.36821532, -0.025259733)
