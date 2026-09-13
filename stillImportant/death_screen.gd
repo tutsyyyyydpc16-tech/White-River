@@ -11,7 +11,7 @@ func _ready() -> void:
 	$CanvasLayer/Exit.visible = true
 	
 func _on_return_pressed():
-	get_tree().change_scene_to_file("res://level/cena_contention.tscn")
+	get_tree().change_scene_to_file("res://forSceneContention/scenes/cena_contention.tscn")
 	
 func _on_exit_pressed():
-	get_tree().change_scene_to_file("res://level/main_menu.tscn")
+	get_tree().change_scene_to_file("res://menuScreen/main_menu.tscn")
