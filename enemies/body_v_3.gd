@@ -184,6 +184,11 @@ func dropar_chave() -> void:
 
 	key_contention.freeze = false
 
+	# Dá um pequeno empurrão lateral aleatório, pra ela não cair bem debaixo
+	# do inimigo (ficando escondida pelo próprio corpo dele) e sim rolar um
+	# pouco pro lado, ficando visível no chão
+	key_contention.apply_impulse(Vector3(randf_range(-0.6, 0.6), 1.0, randf_range(-0.6, 0.6)))
+
 	print("[CHAVE] Freeze depois: ", key_contention.freeze)
 
 	await get_tree().create_timer(1.0).timeout
@@ -194,3 +199,9 @@ func dropar_chave() -> void:
 		print("[CHAVE] CAIU! ✓")
 	else:
 		print("[CHAVE] NÃO CAIU! Algo está impedindo a física.")
+
+	# Confere de novo mais um pouco depois, pra saber se ela realmente
+	# pousou em algum lugar (posição estável) ou se continua caindo pro vazio
+	await get_tree().create_timer(3.0).timeout
+	if is_instance_valid(key_contention):
+		print("[CHAVE] Posição 4 segundos depois: ", key_contention.global_position, " | velocidade: ", key_contention.linear_velocity)
