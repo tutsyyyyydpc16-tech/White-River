@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="White River Cap1"
-run/main_scene="uid://dlaj8qg760u1s"
+run/main_scene="uid://bheuxp1j7e4qx"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://image/icon.svg"
 
