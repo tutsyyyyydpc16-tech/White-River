@@ -1057,11 +1057,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_nkd3d")
 [node name="RoofStaticBody3D" type="StaticBody3D" parent="Estrutura/Duto_armazem" unique_id=590983618]
 
 [node name="RoofCollisionShape3D" type="CollisionShape3D" parent="Estrutura/Duto_armazem/RoofStaticBody3D" unique_id=595374534]
-transform = Transform3D(1, 2.2023921e-20, 4.5832224e-13, -2.2023921e-20, 1, 0, -4.5832224e-13, -1.0094053e-32, 1, 4.467762, 0.0005643368, 0.0062863827)
+transform = Transform3D(0.9999999, 2.2023918e-20, 5.1159077e-13, -2.2022857e-20, 0.9999998, -1.6155871e-27, -4.600764e-13, -1.01592805e-32, 0.99999994, 4.46776, 0.24911213, 0.0062863827)
 shape = SubResource("BoxShape3D_odhpd")
 
 [node name="RoofCollisionShape3D2" type="CollisionShape3D" parent="Estrutura/Duto_armazem/RoofStaticBody3D" unique_id=2081393901]
-transform = Transform3D(1, 0, 0, 0, 1.0000019, 0, 0, 0, 1, 20.338999, -0.56500006, 1.0537863)
+transform = Transform3D(0.9999999, 0, 0, 0, 1.0000017, -1.6155871e-27, -1.7763568e-15, 0, 0.99999994, 20.338995, -0.31645226, 1.053786)
 shape = SubResource("BoxShape3D_y0pg6")
 
 [node name="GroundStaticBody3D" type="StaticBody3D" parent="Estrutura/Duto_armazem" unique_id=165567196]
