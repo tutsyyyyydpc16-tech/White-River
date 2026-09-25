@@ -51,6 +51,7 @@ folder_colors={
 "res://fonts/": "purple",
 "res://forSceneContention/": "gray",
 "res://forSceneHospital/": "blue",
+"res://forSceneSewageI/": "green",
 "res://forSceneStreet/": "yellow",
 "res://forSceneTest/": "gray",
 "res://glitch/": "red",

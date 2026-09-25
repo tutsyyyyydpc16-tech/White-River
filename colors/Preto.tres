@@ -13,4 +13,3 @@ color_ramp = SubResource("Gradient_b0iru")
 cull_mode = 2
 albedo_color = Color(0.49433076, 0.49433076, 0.4943307, 1)
 albedo_texture = SubResource("NoiseTexture2D_kxre1")
-roughness = 0.0
