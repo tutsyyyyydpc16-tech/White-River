@@ -74,7 +74,7 @@ shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.5
 
-[node name="PlayerCont" type="CharacterBody3D" unique_id=6780333 groups=["player"]]
+[node name="PlayerCont" type="CharacterBody3D" unique_id=6780333 groups=["main_player", "player"]]
 script = ExtResource("1_i0ue1")
 
 [node name="StandingCollisionShape" type="CollisionShape3D" parent="." unique_id=1904698703]

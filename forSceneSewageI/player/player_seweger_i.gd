@@ -88,7 +88,38 @@ func _ready() -> void:
 	var deco_collision = flashlight.find_child("CollisionShape3D", true, false)
 	if deco_collision:
 		deco_collision.disabled = true
-		
+	
+	_connect_to_main_player_inventory()
+
+## Acha o player_cont pelo grupo e escuta o sinal de item novo pra espelhar aqui
+func _connect_to_main_player_inventory() -> void:
+	var main_player: Node = get_tree().get_first_node_in_group("main_player")
+	if main_player == null:
+		push_warning("player_sewager_i: não achei ninguém no grupo 'main_player'. Sem sync, sem choro.")
+		return
+	
+	var main_inventory: InventoryController = main_player.get_node("InventoryController/CanvasLayer/InventoryUI")
+	if main_inventory == null:
+		push_warning("player_sewager_i: player_cont não tem o InventoryController esperado nesse path.")
+		return
+	
+	main_inventory.item_added.connect(_on_main_player_item_added)
+	main_inventory.item_removed.connect(_on_main_player_item_removed)
+
+func _on_main_player_item_added(item_data: ItemData) -> void:
+	if inventory_controller.has_free_slot():
+		inventory_controller.pickup_item(item_data)
+	else:
+		push_warning("player_sewager_i: inventário cheio, não rolou espelhar '%s'" % item_data.resource_path)
+
+## Acha a primeira cópia desse item no inventário espelhado e remove ela, sem disparar use/drop/equip de novo (senão vira loop de sinal chamando sinal)
+func _on_main_player_item_removed(item_data: ItemData) -> void:
+	for slot in inventory_controller.inventory_slots:
+		if slot.slot_data == item_data:
+			slot.fill_slot(null)
+			inventory_controller.inventory_full = false
+			return
+
 func _input(event: InputEvent) -> void:
 	#if Input.is_action_just_pressed("quit"):
 		#get_tree().quit()

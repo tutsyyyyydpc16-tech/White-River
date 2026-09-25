@@ -55,13 +55,19 @@ func has_free_slot() -> bool:
 		if slot.slot_data == null:
 			return true
 	return false
-	
+
+## Emitido sempre que um item entra com sucesso no inventário, pra outros sistemas (tipo um player espelhado) poderem reagir
+signal item_added(item_data: ItemData)
+## Emitido sempre que um item sai do inventário (usado, dropado, equipado ou inspecionado), pra sistemas espelhados removerem a cópia também
+signal item_removed(item_data: ItemData)
+
 ## Places and item into the player inventory
 func pickup_item(item_data: ItemData) -> void:
 	for slot in inventory_slots:
 		if not slot.slot_filled:
 			slot.fill_slot(item_data)
 			inventory_full = not has_free_slot()
+			item_added.emit(item_data)
 			return
 	inventory_full = true
 
@@ -162,18 +168,15 @@ func use_collectable(slot_id: int) -> void:
 	if item_data == null:
 		return
 
-	# Cache the item's action data
 	var action_data: ActionData = item_data.action_data
 	
-	# Call the respective controller to handle the modifier's action
 	match action_data.modifier_name:
 		"sanity":
 			sanity_controller.add_sanity(action_data.modifier_value)
 
-	# Collectable has been used, the inventory is no longer full
 	inventory_full = false
-	# Make the slot empty again
 	slot.fill_slot(null)
+	item_removed.emit(item_data)
 
 ## Drops the item from the provided slot, assuming it will be placed in a valid position. Otherwise, it remains in the inventory
 func drop_collectable(slot_id: int) -> void:
@@ -266,9 +269,8 @@ func drop_collectable(slot_id: int) -> void:
 	
 	# Collectable has been used, the inventory is no longer full
 	inventory_full = false
-	# Make the slot empty again
 	slot.fill_slot(null)
-
+	item_removed.emit(item_data)
 
 ## Equips the item from the provided slot into the player's hand
 func equip_collectable(slot_id: int) -> void:
@@ -280,15 +282,12 @@ func equip_collectable(slot_id: int) -> void:
 	if item_data == null:
 		return
 
-	# Create an instance of the item based on its prefab and assign it to the player
 	var instance: PhysicsBody3D = item_data.item_model_prefab.instantiate() as PhysicsBody3D
-	# Equipped Objects are handled by the interaction controller
 	interaction_controller.on_item_equipped(instance)
 	
-	# Collectable has been used, the inventory is no longer full
 	inventory_full = false
-	# Make the slot empty again
 	slot.fill_slot(null)
+	item_removed.emit(item_data)
 
 ## Places an instance of the item into the players hand to be inspected
 func view_inspectable(slot_id: int) -> void:
@@ -297,15 +296,12 @@ func view_inspectable(slot_id: int) -> void:
 	if item_data == null:
 		return
 
-	# Create an instance of the item based on its prefab and assign it to the player
 	var instance: PhysicsBody3D = item_data.item_model_prefab.instantiate() as PhysicsBody3D
-	# Inspected Objects are handled by the interaction controller
 	interaction_controller.on_note_inspected(instance)
 	
-	# Collectable has been used, the inventory is no longer full
 	inventory_full = false
-	# Make the slot empty again
 	slot.fill_slot(null)
+	item_removed.emit(item_data)
 
 ## Helper method to return what type of action this item is expected to perform
 func _get_item_action_type(item_data: ItemData) -> ActionData.ActionType:
