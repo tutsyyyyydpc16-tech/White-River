@@ -1,11 +1,77 @@
 [gd_scene format=3 uid="uid://dats4m3mfeg0a"]
 
+[ext_resource type="Script" uid="uid://c3echp64ntwxa" path="res://forSceneSewageI/scripts/seweger.gd" id="1_2bb56"]
 [ext_resource type="PackedScene" uid="uid://bduwu4x1erujp" path="res://forSceneSewageI/structures/seweger_i_v_1.tscn" id="1_difhw"]
-[ext_resource type="PackedScene" uid="uid://dsc0lhw7ieyfd" path="res://forSceneContention/player/player_cont.tscn" id="2_yr8b3"]
+[ext_resource type="PackedScene" uid="uid://bv1dcnswdr82o" path="res://forSceneSewageI/player/player_seweger_i.tscn" id="3_2bb56"]
 
 [sub_resource type="Environment" id="Environment_rsrsk"]
+background_mode = 1
+background_color = Color(0.103743516, 0.10374353, 0.103743516, 1)
+background_energy_multiplier = 5.77
+
+[sub_resource type="Animation" id="Animation_yr8b3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.68052596, 1.5304064, 0.025421826)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(12.813754, 8.509499, -0.14269234)]
+}
+
+[sub_resource type="Animation" id="Animation_2bb56"]
+resource_name = "seweger"
+length = 7.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.53333336, 1.4666667, 1.64, 2.2, 4, 4.45, 5.18, 6.36),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.68052596, 1.5304064, 0.025421826), Vector3(0.4714042, -1.5913143, 0.0013024132), Vector3(0.4714042, -1.5913143, 0.0013024132), Vector3(0.47140417, -0.99503875, 0.0013024139), Vector3(0.065384194, 0.95576763, 0.32231072), Vector3(0.065384194, 0.95576763, 0.32231072), Vector3(-0.15099607, -0.7049343, 0.014404627), Vector3(-0.15099607, -2.474726, 0.014404629), Vector3(-0.15099595, -0.40664095, 0.014404651)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.2, 2.2, 3.6, 4.9, 5.9333334, 6.766667, 7.0333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(12.813754, 8.509499, -0.14269234), Vector3(5.774033, 4.39559, -0.14269234), Vector3(3.7686248, 4.39559, -0.14269234), Vector3(-0.58586884, -0.5122761, -0.14269234), Vector3(-0.58586884, -0.5122761, -0.14269234), Vector3(-0.55596066, 0.41843688, -0.14269234), Vector3(-0.55596066, 0.41843688, -0.14269234), Vector3(-0.5233155, 0.6800152, -0.14269234)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8dgvm"]
+_data = {
+&"RESET": SubResource("Animation_yr8b3"),
+&"seweger": SubResource("Animation_2bb56")
+}
 
 [node name="Seweger" type="Node3D" unique_id=1202321012]
+script = ExtResource("1_2bb56")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=643028655]
 environment = SubResource("Environment_rsrsk")
@@ -13,5 +79,16 @@ environment = SubResource("Environment_rsrsk")
 [node name="sewegerI_V1" parent="." unique_id=1737175268 instance=ExtResource("1_difhw")]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
 
-[node name="PlayerCont" parent="." unique_id=6780333 instance=ExtResource("2_yr8b3")]
+[node name="PlayerSewegerI" parent="." unique_id=6780333 instance=ExtResource("3_2bb56")]
+unique_name_in_owner = true
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.5376545, -1.111393, 0)
+
+[node name="Cutscene" type="Node" parent="." unique_id=527107610]
+
+[node name="Camera3D" type="Camera3D" parent="Cutscene" unique_id=1316952042]
+unique_name_in_owner = true
+transform = Transform3D(0.024385238, -0.6295119, 0.77660835, 0.019756768, 0.77699065, 0.6292022, -0.99950683, 2.7939672e-08, 0.03138426, 12.813754, 8.509499, -0.14269234)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cutscene" unique_id=1080395500]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_8dgvm")
